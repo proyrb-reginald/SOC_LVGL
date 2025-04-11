@@ -29,4 +29,5 @@ extern int8_t SetNoiseThreshold;
 extern void TK_Init(void);
 extern void TK_Restart(void);
 extern uint32_t TK_TouchKeyScan(void);
+
 #endif

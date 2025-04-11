@@ -10,41 +10,43 @@
 extern "C" {
 #endif
 
-#include "LVGL/lvgl.h"
+#include "lvgl/lvgl.h"
 
-#include "ui_events.h"
 #include "ui_helpers.h"
+#include "ui_events.h"
+
 
 // SCREEN: ui_screen
 void ui_screen_screen_init(void);
-extern lv_obj_t *ui_screen;
-extern lv_obj_t *ui_bar;
-extern lv_obj_t *ui_date;
-extern lv_obj_t *ui_time;
-extern lv_obj_t *ui_power;
-extern lv_obj_t *ui_powericon;
-extern lv_obj_t *ui_powervalue;
-extern lv_obj_t *ui_chats;
-extern lv_obj_t *ui_temperaturecontainer;
-extern lv_obj_t *ui_temperature;
-extern lv_obj_t *ui_temperaturelabel;
-extern lv_obj_t *ui_humiditycontainer;
-extern lv_obj_t *ui_humidity;
-extern lv_obj_t *ui_humiditylabel;
-extern lv_obj_t *ui_functions;
-extern lv_obj_t *ui_refreshbutton;
-extern lv_obj_t *ui_refreshlabel;
-extern lv_obj_t *ui_switchbutton;
-extern lv_obj_t *ui_switchlabel;
-extern lv_obj_t *ui_modebutton;
-extern lv_obj_t *ui_modelabel;
-extern lv_obj_t *ui_otherbutton;
-extern lv_obj_t *ui_otherlabel;
+extern lv_obj_t * ui_screen;
+extern lv_obj_t * ui_bar;
+extern lv_obj_t * ui_date;
+extern lv_obj_t * ui_time;
+extern lv_obj_t * ui_power;
+extern lv_obj_t * ui_powericon;
+extern lv_obj_t * ui_powervalue;
+extern lv_obj_t * ui_chats;
+extern lv_obj_t * ui_temperaturecontainer;
+extern lv_obj_t * ui_temperature;
+extern lv_obj_t * ui_temperaturelabel;
+extern lv_obj_t * ui_humiditycontainer;
+extern lv_obj_t * ui_humidity;
+extern lv_obj_t * ui_humiditylabel;
+extern lv_obj_t * ui_functions;
+extern lv_obj_t * ui_refreshbutton;
+extern lv_obj_t * ui_refreshlabel;
+extern lv_obj_t * ui_switchbutton;
+extern lv_obj_t * ui_switchlabel;
+extern lv_obj_t * ui_modebutton;
+extern lv_obj_t * ui_modelabel;
+extern lv_obj_t * ui_otherbutton;
+extern lv_obj_t * ui_otherlabel;
+extern lv_timer_t * touch_key_refresh_timer;
 // CUSTOM VARIABLES
 
 // EVENTS
 
-extern lv_obj_t *ui____initial_actions0;
+extern lv_obj_t * ui____initial_actions0;
 
 // UI INIT
 void ui_init(void);

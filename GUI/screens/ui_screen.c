@@ -4,8 +4,75 @@
 // Project name: soc_lvgl
 
 #include "../ui.h"
+#include "function_init.h"
+
+extern uint8_t exKeyValue;
+
+static lv_style_t style_button;
+
+void touch_key_refresh_cb(lv_timer_t *timer) {
+    static uint8_t last_value = 255;
+    static uint8_t select = 0;
+
+    uint8_t current_value = exKeyValue;
+    lv_obj_t *select_button = NULL;
+    switch (select) {
+    case 0:
+        select_button = ui_refreshbutton;
+        break;
+    case 1:
+        select_button = ui_switchbutton;
+        break;
+    case 2:
+        select_button = ui_modebutton;
+        break;
+    case 3:
+        select_button = ui_otherbutton;
+        break;
+    }
+    lv_obj_clear_state(select_button,
+                       LV_STATE_FOCUSED); /*MAke the checkbox unchecked*/
+    if ((current_value != last_value) && (current_value == 255)) {
+        switch (last_value) {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            select = (++select + 4) % 4;
+            break;
+        case 4:
+            select = (--select + 4) % 4;
+            break;
+        default:
+            break;
+        }
+    }
+    switch (select) {
+    case 0:
+        select_button = ui_refreshbutton;
+        break;
+    case 1:
+        select_button = ui_switchbutton;
+        break;
+    case 2:
+        select_button = ui_modebutton;
+        break;
+    case 3:
+        select_button = ui_otherbutton;
+        break;
+    }
+    lv_obj_add_state(
+        select_button,
+        LV_STATE_FOCUSED); /*Make the checkbox checked and disabled*/
+    last_value = current_value;
+}
 
 void ui_screen_screen_init(void) {
+    lv_style_init(&style_button);
+    lv_style_set_border_width(&style_button, 2);
+    lv_style_set_border_color(&style_button, lv_color_hex(0xffffff));
+
     ui_screen = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_screen, LV_OBJ_FLAG_SCROLLABLE); /// Flags
     lv_obj_set_style_bg_color(ui_screen, lv_color_hex(0x000000),
@@ -76,7 +143,7 @@ void ui_screen_screen_init(void) {
 
     ui_chats = lv_obj_create(ui_screen);
     lv_obj_remove_style_all(ui_chats);
-    lv_obj_set_height(ui_chats, 190);
+    lv_obj_set_height(ui_chats, 193);
     lv_obj_set_width(ui_chats, lv_pct(100));
     lv_obj_set_x(ui_chats, 0);
     lv_obj_set_y(ui_chats, 24);
@@ -95,16 +162,16 @@ void ui_screen_screen_init(void) {
     ui_temperature = lv_chart_create(ui_temperaturecontainer);
     lv_obj_set_width(ui_temperature, lv_pct(65));
     lv_obj_set_height(ui_temperature, lv_pct(70));
-    lv_obj_set_x(ui_temperature, 0);
+    lv_obj_set_x(ui_temperature, 15);
     lv_obj_set_y(ui_temperature, -30);
     lv_obj_set_align(ui_temperature, LV_ALIGN_BOTTOM_MID);
-    lv_chart_set_type(ui_temperature, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_temperature, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2,
+    lv_chart_set_type(ui_temperature, LV_CHART_TYPE_BAR);
+    lv_chart_set_axis_tick(ui_temperature, LV_CHART_AXIS_PRIMARY_X, 8, 4, 5, 2,
                            true, 50);
-    lv_chart_set_axis_tick(ui_temperature, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2,
+    lv_chart_set_axis_tick(ui_temperature, LV_CHART_AXIS_PRIMARY_Y, 8, 4, 5, 2,
                            true, 50);
-    lv_chart_set_axis_tick(ui_temperature, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5,
-                           2, true, 25);
+    lv_chart_set_axis_tick(ui_temperature, LV_CHART_AXIS_SECONDARY_Y, 8, 4, 0,
+                           0, false, 25);
     lv_chart_series_t *ui_temperature_series_1 = lv_chart_add_series(
         ui_temperature, lv_color_hex(0x808080), LV_CHART_AXIS_PRIMARY_Y);
     static lv_coord_t ui_temperature_series_1_array[] = {0,  10, 20, 40, 80,
@@ -123,7 +190,7 @@ void ui_screen_screen_init(void) {
     ui_temperaturelabel = lv_label_create(ui_temperaturecontainer);
     lv_obj_set_width(ui_temperaturelabel, LV_SIZE_CONTENT);  /// 1
     lv_obj_set_height(ui_temperaturelabel, LV_SIZE_CONTENT); /// 1
-    lv_obj_set_x(ui_temperaturelabel, 0);
+    lv_obj_set_x(ui_temperaturelabel, 15);
     lv_obj_set_y(ui_temperaturelabel, 10);
     lv_obj_set_align(ui_temperaturelabel, LV_ALIGN_TOP_MID);
     lv_label_set_text(ui_temperaturelabel, "Temperature");
@@ -141,15 +208,15 @@ void ui_screen_screen_init(void) {
     ui_humidity = lv_chart_create(ui_humiditycontainer);
     lv_obj_set_width(ui_humidity, lv_pct(65));
     lv_obj_set_height(ui_humidity, lv_pct(70));
-    lv_obj_set_x(ui_humidity, 0);
+    lv_obj_set_x(ui_humidity, -15);
     lv_obj_set_y(ui_humidity, -30);
     lv_obj_set_align(ui_humidity, LV_ALIGN_BOTTOM_MID);
     lv_chart_set_type(ui_humidity, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_humidity, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2,
+    lv_chart_set_axis_tick(ui_humidity, LV_CHART_AXIS_PRIMARY_X, 8, 4, 5, 2,
                            true, 50);
-    lv_chart_set_axis_tick(ui_humidity, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2,
-                           true, 50);
-    lv_chart_set_axis_tick(ui_humidity, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 2,
+    lv_chart_set_axis_tick(ui_humidity, LV_CHART_AXIS_PRIMARY_Y, 8, 4, 0, 0,
+                           false, 50);
+    lv_chart_set_axis_tick(ui_humidity, LV_CHART_AXIS_SECONDARY_Y, 8, 4, 5, 2,
                            true, 25);
     lv_chart_series_t *ui_humidity_series_1 = lv_chart_add_series(
         ui_humidity, lv_color_hex(0x808080), LV_CHART_AXIS_PRIMARY_Y);
@@ -168,7 +235,7 @@ void ui_screen_screen_init(void) {
     ui_humiditylabel = lv_label_create(ui_humiditycontainer);
     lv_obj_set_width(ui_humiditylabel, LV_SIZE_CONTENT);  /// 1
     lv_obj_set_height(ui_humiditylabel, LV_SIZE_CONTENT); /// 1
-    lv_obj_set_x(ui_humiditylabel, 0);
+    lv_obj_set_x(ui_humiditylabel, -15);
     lv_obj_set_y(ui_humiditylabel, 10);
     lv_obj_set_align(ui_humiditylabel, LV_ALIGN_TOP_MID);
     lv_label_set_text(ui_humiditylabel, "Humidity");
@@ -177,7 +244,7 @@ void ui_screen_screen_init(void) {
 
     ui_functions = lv_obj_create(ui_screen);
     lv_obj_remove_style_all(ui_functions);
-    lv_obj_set_height(ui_functions, 58);
+    lv_obj_set_height(ui_functions, 55);
     lv_obj_set_width(ui_functions, lv_pct(100));
     lv_obj_set_align(ui_functions, LV_ALIGN_BOTTOM_MID);
     lv_obj_set_flex_flow(ui_functions, LV_FLEX_FLOW_ROW);
@@ -197,6 +264,7 @@ void ui_screen_screen_init(void) {
     lv_obj_clear_flag(ui_refreshbutton, LV_OBJ_FLAG_SCROLLABLE);    /// Flags
     lv_obj_set_style_radius(ui_refreshbutton, 15,
                             LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_add_style(ui_refreshbutton, &style_button, LV_STATE_FOCUSED);
 
     ui_refreshlabel = lv_label_create(ui_refreshbutton);
     lv_obj_set_width(ui_refreshlabel, LV_SIZE_CONTENT);  /// 1
@@ -214,6 +282,7 @@ void ui_screen_screen_init(void) {
     lv_obj_clear_flag(ui_switchbutton, LV_OBJ_FLAG_SCROLLABLE);    /// Flags
     lv_obj_set_style_radius(ui_switchbutton, 15,
                             LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_add_style(ui_switchbutton, &style_button, LV_STATE_FOCUSED);
 
     ui_switchlabel = lv_label_create(ui_switchbutton);
     lv_obj_set_width(ui_switchlabel, LV_SIZE_CONTENT);  /// 1
@@ -230,6 +299,7 @@ void ui_screen_screen_init(void) {
     lv_obj_add_flag(ui_modebutton, LV_OBJ_FLAG_SCROLL_ON_FOCUS); /// Flags
     lv_obj_clear_flag(ui_modebutton, LV_OBJ_FLAG_SCROLLABLE);    /// Flags
     lv_obj_set_style_radius(ui_modebutton, 15, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_add_style(ui_modebutton, &style_button, LV_STATE_FOCUSED);
 
     ui_modelabel = lv_label_create(ui_modebutton);
     lv_obj_set_width(ui_modelabel, LV_SIZE_CONTENT);  /// 1
@@ -247,6 +317,7 @@ void ui_screen_screen_init(void) {
     lv_obj_clear_flag(ui_otherbutton, LV_OBJ_FLAG_SCROLLABLE);    /// Flags
     lv_obj_set_style_radius(ui_otherbutton, 15,
                             LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_add_style(ui_otherbutton, &style_button, LV_STATE_FOCUSED);
 
     ui_otherlabel = lv_label_create(ui_otherbutton);
     lv_obj_set_width(ui_otherlabel, LV_SIZE_CONTENT);  /// 1
@@ -255,4 +326,7 @@ void ui_screen_screen_init(void) {
     lv_label_set_text(ui_otherlabel, "Other");
     lv_obj_set_style_text_font(ui_otherlabel, &lv_font_montserrat_12,
                                LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    touch_key_refresh_timer = lv_timer_create(touch_key_refresh_cb, 10, NULL);
+    lv_timer_ready(touch_key_refresh_timer);
 }

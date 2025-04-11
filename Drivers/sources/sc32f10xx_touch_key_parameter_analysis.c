@@ -46,7 +46,6 @@ uint16_t MultipleLNum;   // 多按键干扰计数
 extern uint8_t SingleCurrentChannelMax; // 当前单通道的keysensor的个数
 extern uint8_t bMultiple;               // 多按键标志
 extern uint8_t TK_GetIsNeedUpdateBaseline(void);
-
 extern uint32_t TK_SensorKeyFlag(void);
 extern void TK_SetNeedUpdateBaseline(void);
 extern void TK_MultipleDeal(uint8_t CycleCnt);
@@ -306,15 +305,15 @@ void TK_TouchKeyCFGInit(void) {
 }
 
 /****************************************************************************
-*函数名称：uint32_t TK_TouchKeyScan(void)
-*函数功能：检测按键接口
-*入口参数：void
-*出口参数：按键通道， 返回的是一个uint32_t , 通道数4个字节0x00000000
-*备注	 ：1,  调用触控库检测函数SensorKeyFlag()
-                   2,  分析得出31个通道，哪个通道有按下，按下bit
-位设置为1，否则为0 3,  检测是否需要立即更新baseline:  大于MAX_KEY_RESET_BASELINE
-个按键按下时立即更新baseline 4,  双键或者单键按下时，
-时间大于SetOneKeyPushResetTime()结果时更新baseline
+ * 函数名称：uint32_t TK_TouchKeyScan(void)
+ * 函数功能：检测按键接口
+ * 入口参数：void
+ * 出口参数：按键通道，返回的是一个uint32_t, 通道数4个字节0x00000000
+ * 备注：
+ * 1.调用触控库检测函数SensorKeyFlag()
+ * 2.分析得出31个通道，哪个通道有按下，对应bit位设置为1，否则为0
+ * 3.检测是否需要立即更新baseline，大于MAX_KEY_RESET_BASELINE个按键按下时立即更新baseline
+ * 4.双键或者单键按下时，时间大于SetOneKeyPushResetTime()结果时更新baseline
 *****************************************************************************/
 uint32_t TK_TouchKeyScan(void) {
     uint8_t t;
