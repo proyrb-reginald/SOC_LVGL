@@ -1,7 +1,7 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
-#include "Function_Init.h"
+#include "function_init.h"
 /* Reset Operations */
 #define RESET_ENABLE_CMD 0x66
 #define RESET_MEMORY_CMD 0x99

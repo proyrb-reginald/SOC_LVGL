@@ -8,9 +8,9 @@
 //	注意事项	:  用户需要配置的文件在S_TouchKeyCFG.h中
 //  库版本标记	:
 //************************************************************************************************
-#include "sc32f10xx_TK_ParameterAnalysis.h"
-#include "S_TOUCHKEYCFG.h"
-#include "W1222A.h"
+#include "sc32f10xx_touch_key_parameter_analysis.h"
+#include "s_touch_key_config.h"
+#include "w1222a.h"
 
 //===============================================================================
 // 全局变量声明：该区域不可修改

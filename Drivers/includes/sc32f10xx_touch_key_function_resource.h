@@ -10,7 +10,7 @@
 #ifndef _SENSORMETHOD_C_H
 #define _SENSORMETHOD_C_H
 
-#include "W1222A.h"
+#include "w1222a.h"
 #include "sc32F10xx_rcc.h"
 
 extern uint8_t TK_TouchKeyStatus; // 按键扫描完成标志位

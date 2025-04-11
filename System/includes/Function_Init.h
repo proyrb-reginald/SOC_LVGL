@@ -1,9 +1,9 @@
 #ifndef _Function_Init_H_
 #define _Function_Init_H_
-#include "LCD.h"
-#include "SC32F10xx_gpio.h"
-#include "SC32F10xx_rcc.h"
-#include "W1222A.h"
+#include "lcd.h"
+#include "sc32f10xx_gpio.h"
+#include "sc32f10xx_rcc.h"
+#include "w1222a.h"
 #include "main.h"
 #include "qspi.h"
 #include "sc32r803_tim.h"

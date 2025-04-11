@@ -202,8 +202,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Drivers\sources\SC32F10xx_gpio.c</PathWithFileName>
-      <FilenameWithoutPath>SC32F10xx_gpio.c</FilenameWithoutPath>
+      <PathWithFileName>.\Drivers\sources\sc32f10xx_gpio.c</PathWithFileName>
+      <FilenameWithoutPath>sc32f10xx_gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -214,8 +214,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Drivers\sources\SC32F10xx_rcc.c</PathWithFileName>
-      <FilenameWithoutPath>SC32F10xx_rcc.c</FilenameWithoutPath>
+      <PathWithFileName>.\Drivers\sources\sc32f10xx_rcc.c</PathWithFileName>
+      <FilenameWithoutPath>sc32f10xx_rcc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -226,8 +226,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Drivers\sources\sc32f10xx_TK_ParameterAnalysis.c</PathWithFileName>
-      <FilenameWithoutPath>sc32f10xx_TK_ParameterAnalysis.c</FilenameWithoutPath>
+      <PathWithFileName>.\Drivers\sources\sc32f10xx_touch_key_parameter_analysis.c</PathWithFileName>
+      <FilenameWithoutPath>sc32f10xx_touch_key_parameter_analysis.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -262,8 +262,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Drivers\sources\sc32f10xx_HighSensitive_lib_T1_V0.3.lib</PathWithFileName>
-      <FilenameWithoutPath>sc32f10xx_HighSensitive_lib_T1_V0.3.lib</FilenameWithoutPath>
+      <PathWithFileName>.\Drivers\sources\sc32f10xx_high_sensitive_lib_t1_v0.3.lib</PathWithFileName>
+      <FilenameWithoutPath>sc32f10xx_high_sensitive_lib_t1_v0.3.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -274,8 +274,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Drivers\sources\sc32f10xx_TK_DynamicDebug_V0.3.lib</PathWithFileName>
-      <FilenameWithoutPath>sc32f10xx_TK_DynamicDebug_V0.3.lib</FilenameWithoutPath>
+      <PathWithFileName>.\Drivers\sources\sc32f10xx_touch_key_dynamic_debug_v0.3.lib</PathWithFileName>
+      <FilenameWithoutPath>sc32f10xx_touch_key_dynamic_debug_v0.3.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -283,7 +283,7 @@
 
   <Group>
     <GroupName>System</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -402,8 +402,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\System\sources\W25Q16.c</PathWithFileName>
-      <FilenameWithoutPath>W25Q16.c</FilenameWithoutPath>
+      <PathWithFileName>.\System\sources\w25q16.c</PathWithFileName>
+      <FilenameWithoutPath>w25q16.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2458,8 +2458,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Middlewares\LVGL\examples\porting\lv_port_disp_template.c</PathWithFileName>
-      <FilenameWithoutPath>lv_port_disp_template.c</FilenameWithoutPath>
+      <PathWithFileName>.\Middlewares\LVGL\examples\porting\lv_port_fs_template.c</PathWithFileName>
+      <FilenameWithoutPath>lv_port_fs_template.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2470,8 +2470,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Middlewares\LVGL\examples\porting\lv_port_fs_template.c</PathWithFileName>
-      <FilenameWithoutPath>lv_port_fs_template.c</FilenameWithoutPath>
+      <PathWithFileName>.\Middlewares\LVGL\examples\porting\lv_port_disp.c</PathWithFileName>
+      <FilenameWithoutPath>lv_port_disp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2482,8 +2482,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Middlewares\LVGL\examples\porting\lv_port_indev_template.c</PathWithFileName>
-      <FilenameWithoutPath>lv_port_indev_template.c</FilenameWithoutPath>
+      <PathWithFileName>.\Middlewares\LVGL\examples\porting\lv_port_indev.c</PathWithFileName>
+      <FilenameWithoutPath>lv_port_indev.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

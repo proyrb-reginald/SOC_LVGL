@@ -17,7 +17,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "SC32F10xx_rcc.h"
+#include "sc32f10xx_rcc.h"
 
 /** @addtogroup STM32F0xx_StdPeriph_Driver
  * @{

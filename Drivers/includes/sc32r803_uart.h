@@ -31,8 +31,8 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "SC32F10xx_rcc.h"
-#include "W1222A.h"
+#include "sc32f10xx_rcc.h"
+#include "w1222a.h"
 #include "sc32.h"
 #include "stdio.h"
 /** @addtogroup SC32f10xx_StdPeriph_Driver

@@ -394,19 +394,19 @@
           <GroupName>Drivers</GroupName>
           <Files>
             <File>
-              <FileName>SC32F10xx_gpio.c</FileName>
+              <FileName>sc32f10xx_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Drivers\sources\SC32F10xx_gpio.c</FilePath>
+              <FilePath>.\Drivers\sources\sc32f10xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>SC32F10xx_rcc.c</FileName>
+              <FileName>sc32f10xx_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Drivers\sources\SC32F10xx_rcc.c</FilePath>
+              <FilePath>.\Drivers\sources\sc32f10xx_rcc.c</FilePath>
             </File>
             <File>
-              <FileName>sc32f10xx_TK_ParameterAnalysis.c</FileName>
+              <FileName>sc32f10xx_touch_key_parameter_analysis.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Drivers\sources\sc32f10xx_TK_ParameterAnalysis.c</FilePath>
+              <FilePath>.\Drivers\sources\sc32f10xx_touch_key_parameter_analysis.c</FilePath>
             </File>
             <File>
               <FileName>sc32r803_tim.c</FileName>
@@ -419,14 +419,14 @@
               <FilePath>.\Drivers\sources\sc32r803_uart.c</FilePath>
             </File>
             <File>
-              <FileName>sc32f10xx_HighSensitive_lib_T1_V0.3.lib</FileName>
+              <FileName>sc32f10xx_high_sensitive_lib_t1_v0.3.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>.\Drivers\sources\sc32f10xx_HighSensitive_lib_T1_V0.3.lib</FilePath>
+              <FilePath>.\Drivers\sources\sc32f10xx_high_sensitive_lib_t1_v0.3.lib</FilePath>
             </File>
             <File>
-              <FileName>sc32f10xx_TK_DynamicDebug_V0.3.lib</FileName>
+              <FileName>sc32f10xx_touch_key_dynamic_debug_v0.3.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>.\Drivers\sources\sc32f10xx_TK_DynamicDebug_V0.3.lib</FilePath>
+              <FilePath>.\Drivers\sources\sc32f10xx_touch_key_dynamic_debug_v0.3.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -479,9 +479,9 @@
               <FilePath>.\System\sources\uart.c</FilePath>
             </File>
             <File>
-              <FileName>W25Q16.c</FileName>
+              <FileName>w25q16.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\System\sources\W25Q16.c</FilePath>
+              <FilePath>.\System\sources\w25q16.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1349,19 +1349,19 @@
           <GroupName>Middlewares/LVGL/examples/porting</GroupName>
           <Files>
             <File>
-              <FileName>lv_port_disp_template.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\examples\porting\lv_port_disp_template.c</FilePath>
-            </File>
-            <File>
               <FileName>lv_port_fs_template.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middlewares\LVGL\examples\porting\lv_port_fs_template.c</FilePath>
             </File>
             <File>
-              <FileName>lv_port_indev_template.c</FileName>
+              <FileName>lv_port_disp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\examples\porting\lv_port_indev_template.c</FilePath>
+              <FilePath>.\Middlewares\LVGL\examples\porting\lv_port_disp.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_port_indev.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\examples\porting\lv_port_indev.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * @file   SC32F10xx_rcc.h
+ * @file   sc32f10xx_rcc.h
  * @author  soc
  * @version V1.5.0
  * @date    07-9-2021
@@ -20,7 +20,7 @@ extern "C" {
 #endif
 
 /*!< Includes ----------------------------------------------------------------*/
-#include "W1222A.h"
+#include "w1222a.h"
 
 /** @addtogroup sc32f10xx_StdPeriph_Driver
  * @{

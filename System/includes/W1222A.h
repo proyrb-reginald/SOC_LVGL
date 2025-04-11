@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    W1222A.h
+  * @file    w1222a.h
   * @author  SOC SA Team
   * @brief   CMSIS Cortex-M0+ Device Peripheral Access Layer Header File.
   *          This file contains all the peripheral register's definitions, bits

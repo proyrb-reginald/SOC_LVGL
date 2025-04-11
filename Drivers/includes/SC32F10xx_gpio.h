@@ -20,7 +20,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "W1222A.h"
+#include "w1222a.h"
 
 /** @addtogroup SC32F10xx_StdPeriph_Driver
  * @{

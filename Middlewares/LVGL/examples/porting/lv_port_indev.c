@@ -10,10 +10,10 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_port_indev_template.h"
+#include "lv_port_indev.h"
 #include "../../lvgl.h"
-#include "sc32f10xx_TK_FunctionResource.h"
-#include "sc32f10xx_TK_ParameterAnalysis.h"
+#include "sc32f10xx_touch_key_function_resource.h"
+#include "sc32f10xx_touch_key_parameter_analysis.h"
 /*********************
  *      DEFINES
  *********************/

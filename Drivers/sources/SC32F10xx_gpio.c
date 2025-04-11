@@ -13,7 +13,7 @@
  **/
 
 /* Includes ------------------------------------------------------------------*/
-#include "SC32F10xx_gpio.h"
+#include "sc32f10xx_gpio.h"
 
 /** @addtogroup SC32F10xx_StdPeriph_Driver
  * @{

@@ -1,4 +1,4 @@
-#include "Function_Init.h"
+#include "function_init.h"
 void IO_Init(void) {
     GPIOA->PXCON = 0XFFFF;
     GPIOB->PXCON = 0XFFFF;

@@ -1,6 +1,6 @@
 #ifndef __LCD_H
 #define __LCD_H
-#include "W1222A.h"
+#include "w1222a.h"
 #include "stdint.h"
 /* Includes ------------------------------------------------------------------*/
 #define POINT_SIZE 10

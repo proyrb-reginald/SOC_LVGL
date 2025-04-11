@@ -1,4 +1,4 @@
-#include "Function_Init.h"
+#include "function_init.h"
 
 void SC_DMA_Init(void) {
 #if Test_Mode == Striaight_Mode
