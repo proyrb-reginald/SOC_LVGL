@@ -24,7 +24,7 @@
 #define ResetIO_PB(x) PB_BIT(x) = 0
 #define ResetIO_PC(x) PC_BIT(x) = 0
 
-uint32_t TK_exKeyValueFlag = 0; // µ±Ç°ÂÖ°´¼ü±êÖ¾
+uint32_t TK_exKeyValueFlag = 0; // å½“å‰è½®æŒ‰é”®æ ‡å¿—
 uint8_t exKeyValue = 0;
 uint8_t gTkIsValid = 0;
 uint8_t KeyValue = 0;
@@ -37,7 +37,7 @@ void SystemClock_Config(void);
 uint8_t SPIF_flag = 0;
 
 uint8_t DL_OK = 0;
-extern uint16_t TIM_BaseCnt; // ×Ô¶¨ÒåTIM0¼ÆÊı±äÁ¿
+extern uint16_t TIM_BaseCnt; // è‡ªå®šä¹‰TIM0è®¡æ•°å˜é‡
 
 QSPI_CommandTypeDef sCommand;
 QSPI_StrmodeTypeDef strmode;
@@ -56,67 +56,67 @@ void SystemInit(void) {
 int i = 0;
 uint8_t PicNum = 0;
 uint8_t menu = 1;
-int value = 10; // ³õÊ¼Öµ
+int value = 10; // åˆå§‹å€¼
 int picLeft1[] = {
-    4, 13, 26, 36}; // ĞèÒªÅÅ³ıµÄÊıÖµÁĞ±í£¬ÓÃ...±íÊ¾¿ÉÄÜÓĞºÜ¶àÊıÖµ//Ğ¡Ñ­»·×óÇø¼ä
-int picRight1[] = {13, 26, 36, 48}; // Ğ¡Ñ­»·ÓÒÇø¼ä
+    4, 13, 26, 36}; // éœ€è¦æ’é™¤çš„æ•°å€¼åˆ—è¡¨ï¼Œç”¨...è¡¨ç¤ºå¯èƒ½æœ‰å¾ˆå¤šæ•°å€¼//å°å¾ªç¯å·¦åŒºé—´
+int picRight1[] = {13, 26, 36, 48}; // å°å¾ªç¯å³åŒºé—´
 int n1 = sizeof(picLeft1) / sizeof(picLeft1[0]);
 int n2 = sizeof(picRight1) / sizeof(picRight1[0]);
 int picLeft2[] = {
-    50, 66, 83}; // ĞèÒªÅÅ³ıµÄÊıÖµÁĞ±í£¬ÓÃ...±íÊ¾¿ÉÄÜÓĞºÜ¶àÊıÖµ//Ğ¡Ñ­»·×óÇø¼ä
-int picRight2[] = {66, 83, 98}; // Ğ¡Ñ­»·ÓÒÇø¼ä
+    50, 66, 83}; // éœ€è¦æ’é™¤çš„æ•°å€¼åˆ—è¡¨ï¼Œç”¨...è¡¨ç¤ºå¯èƒ½æœ‰å¾ˆå¤šæ•°å€¼//å°å¾ªç¯å·¦åŒºé—´
+int picRight2[] = {66, 83, 98}; // å°å¾ªç¯å³åŒºé—´
 int n3 = sizeof(picLeft2) / sizeof(picLeft2[0]);
 int n4 = sizeof(picRight2) / sizeof(picRight2[0]);
 int picLeft3[] = {
     101, 112, 123,
-    134}; // ĞèÒªÅÅ³ıµÄÊıÖµÁĞ±í£¬ÓÃ...±íÊ¾¿ÉÄÜÓĞºÜ¶àÊıÖµ//Ğ¡Ñ­»·×óÇø¼ä
-int picRight3[] = {112, 123, 134, 144}; // Ğ¡Ñ­»·ÓÒÇø¼ä
+    134}; // éœ€è¦æ’é™¤çš„æ•°å€¼åˆ—è¡¨ï¼Œç”¨...è¡¨ç¤ºå¯èƒ½æœ‰å¾ˆå¤šæ•°å€¼//å°å¾ªç¯å·¦åŒºé—´
+int picRight3[] = {112, 123, 134, 144}; // å°å¾ªç¯å³åŒºé—´
 int n5 = sizeof(picLeft3) / sizeof(picLeft3[0]);
 int n6 = sizeof(picRight3) / sizeof(picRight3[0]);
 int picLeft4[] = {
-    146, 155, 166}; // ĞèÒªÅÅ³ıµÄÊıÖµÁĞ±í£¬ÓÃ...±íÊ¾¿ÉÄÜÓĞºÜ¶àÊıÖµ//Ğ¡Ñ­»·×óÇø¼ä
-int picRight4[] = {155, 166, 175}; // Ğ¡Ñ­»·ÓÒÇø¼ä
+    146, 155, 166}; // éœ€è¦æ’é™¤çš„æ•°å€¼åˆ—è¡¨ï¼Œç”¨...è¡¨ç¤ºå¯èƒ½æœ‰å¾ˆå¤šæ•°å€¼//å°å¾ªç¯å·¦åŒºé—´
+int picRight4[] = {155, 166, 175}; // å°å¾ªç¯å³åŒºé—´
 int n7 = sizeof(picLeft4) / sizeof(picLeft4[0]);
 int n8 = sizeof(picRight4) / sizeof(picRight4[0]);
 int a;
 
 int PicLeft(void) {
     if (menu == 2) {
-        for (a = 0; a < n1; a++) {  // ±éÀúÅÅ³ıÊıÖµÁĞ±í
-            if (i == picLeft1[a]) { // Èç¹ûÕÒµ½ÁËÆ¥ÅäµÄÊıÖµ
+        for (a = 0; a < n1; a++) {  // éå†æ’é™¤æ•°å€¼åˆ—è¡¨
+            if (i == picLeft1[a]) { // å¦‚æœæ‰¾åˆ°äº†åŒ¹é…çš„æ•°å€¼
                 return picLeft1[a];
                 //			break; //
-                // ²»ĞèÒª¼ÌĞø¼õÒ»²Ù×÷£¬¿ÉÒÔÌø³öÍâ²ãÑ­»·£¨Èç¹ûĞèÒªµÄ»°£©
+                // ä¸éœ€è¦ç»§ç»­å‡ä¸€æ“ä½œï¼Œå¯ä»¥è·³å‡ºå¤–å±‚å¾ªç¯ï¼ˆå¦‚æœéœ€è¦çš„è¯ï¼‰
             }
         }
     }
 
     if (menu == 3) {
-        for (a = 0; a < n3; a++) {  // ±éÀúÅÅ³ıÊıÖµÁĞ±í
-            if (i == picLeft2[a]) { // Èç¹ûÕÒµ½ÁËÆ¥ÅäµÄÊıÖµ
+        for (a = 0; a < n3; a++) {  // éå†æ’é™¤æ•°å€¼åˆ—è¡¨
+            if (i == picLeft2[a]) { // å¦‚æœæ‰¾åˆ°äº†åŒ¹é…çš„æ•°å€¼
                 return picLeft2[a];
                 //			break; //
-                // ²»ĞèÒª¼ÌĞø¼õÒ»²Ù×÷£¬¿ÉÒÔÌø³öÍâ²ãÑ­»·£¨Èç¹ûĞèÒªµÄ»°£©
+                // ä¸éœ€è¦ç»§ç»­å‡ä¸€æ“ä½œï¼Œå¯ä»¥è·³å‡ºå¤–å±‚å¾ªç¯ï¼ˆå¦‚æœéœ€è¦çš„è¯ï¼‰
             }
         }
     }
 
     if (menu == 4) {
-        for (a = 0; a < n5; a++) {  // ±éÀúÅÅ³ıÊıÖµÁĞ±í
-            if (i == picLeft3[a]) { // Èç¹ûÕÒµ½ÁËÆ¥ÅäµÄÊıÖµ
+        for (a = 0; a < n5; a++) {  // éå†æ’é™¤æ•°å€¼åˆ—è¡¨
+            if (i == picLeft3[a]) { // å¦‚æœæ‰¾åˆ°äº†åŒ¹é…çš„æ•°å€¼
                 return picLeft3[a];
                 //			break; //
-                // ²»ĞèÒª¼ÌĞø¼õÒ»²Ù×÷£¬¿ÉÒÔÌø³öÍâ²ãÑ­»·£¨Èç¹ûĞèÒªµÄ»°£©
+                // ä¸éœ€è¦ç»§ç»­å‡ä¸€æ“ä½œï¼Œå¯ä»¥è·³å‡ºå¤–å±‚å¾ªç¯ï¼ˆå¦‚æœéœ€è¦çš„è¯ï¼‰
             }
         }
     }
 
     if (menu == 5) {
-        for (a = 0; a < n7; a++) {  // ±éÀúÅÅ³ıÊıÖµÁĞ±í
-            if (i == picLeft4[a]) { // Èç¹ûÕÒµ½ÁËÆ¥ÅäµÄÊıÖµ
+        for (a = 0; a < n7; a++) {  // éå†æ’é™¤æ•°å€¼åˆ—è¡¨
+            if (i == picLeft4[a]) { // å¦‚æœæ‰¾åˆ°äº†åŒ¹é…çš„æ•°å€¼
                 return picLeft4[a];
                 //			break; //
-                // ²»ĞèÒª¼ÌĞø¼õÒ»²Ù×÷£¬¿ÉÒÔÌø³öÍâ²ãÑ­»·£¨Èç¹ûĞèÒªµÄ»°£©
+                // ä¸éœ€è¦ç»§ç»­å‡ä¸€æ“ä½œï¼Œå¯ä»¥è·³å‡ºå¤–å±‚å¾ªç¯ï¼ˆå¦‚æœéœ€è¦çš„è¯ï¼‰
             }
         }
     }
@@ -126,41 +126,41 @@ int PicLeft(void) {
 
 int PicRight(void) {
     if (menu == 2) {
-        for (a = 0; a < n2; a++) {   // ±éÀúÅÅ³ıÊıÖµÁĞ±í
-            if (i == picRight1[a]) { // Èç¹ûÕÒµ½ÁËÆ¥ÅäµÄÊıÖµ
+        for (a = 0; a < n2; a++) {   // éå†æ’é™¤æ•°å€¼åˆ—è¡¨
+            if (i == picRight1[a]) { // å¦‚æœæ‰¾åˆ°äº†åŒ¹é…çš„æ•°å€¼
                 return picRight1[a];
                 //			break; //
-                // ²»ĞèÒª¼ÌĞø¼õÒ»²Ù×÷£¬¿ÉÒÔÌø³öÍâ²ãÑ­»·£¨Èç¹ûĞèÒªµÄ»°£©
+                // ä¸éœ€è¦ç»§ç»­å‡ä¸€æ“ä½œï¼Œå¯ä»¥è·³å‡ºå¤–å±‚å¾ªç¯ï¼ˆå¦‚æœéœ€è¦çš„è¯ï¼‰
             }
         }
     }
 
     if (menu == 3) {
-        for (a = 0; a < n4; a++) {   // ±éÀúÅÅ³ıÊıÖµÁĞ±í
-            if (i == picRight2[a]) { // Èç¹ûÕÒµ½ÁËÆ¥ÅäµÄÊıÖµ
+        for (a = 0; a < n4; a++) {   // éå†æ’é™¤æ•°å€¼åˆ—è¡¨
+            if (i == picRight2[a]) { // å¦‚æœæ‰¾åˆ°äº†åŒ¹é…çš„æ•°å€¼
                 return picRight2[a];
                 //			break; //
-                // ²»ĞèÒª¼ÌĞø¼õÒ»²Ù×÷£¬¿ÉÒÔÌø³öÍâ²ãÑ­»·£¨Èç¹ûĞèÒªµÄ»°£©
+                // ä¸éœ€è¦ç»§ç»­å‡ä¸€æ“ä½œï¼Œå¯ä»¥è·³å‡ºå¤–å±‚å¾ªç¯ï¼ˆå¦‚æœéœ€è¦çš„è¯ï¼‰
             }
         }
     }
 
     if (menu == 4) {
-        for (a = 0; a < n6; a++) {   // ±éÀúÅÅ³ıÊıÖµÁĞ±í
-            if (i == picRight3[a]) { // Èç¹ûÕÒµ½ÁËÆ¥ÅäµÄÊıÖµ
+        for (a = 0; a < n6; a++) {   // éå†æ’é™¤æ•°å€¼åˆ—è¡¨
+            if (i == picRight3[a]) { // å¦‚æœæ‰¾åˆ°äº†åŒ¹é…çš„æ•°å€¼
                 return picRight3[a];
                 //			break; //
-                // ²»ĞèÒª¼ÌĞø¼õÒ»²Ù×÷£¬¿ÉÒÔÌø³öÍâ²ãÑ­»·£¨Èç¹ûĞèÒªµÄ»°£©
+                // ä¸éœ€è¦ç»§ç»­å‡ä¸€æ“ä½œï¼Œå¯ä»¥è·³å‡ºå¤–å±‚å¾ªç¯ï¼ˆå¦‚æœéœ€è¦çš„è¯ï¼‰
             }
         }
     }
 
     if (menu == 5) {
-        for (a = 0; a < n8; a++) {   // ±éÀúÅÅ³ıÊıÖµÁĞ±í
-            if (i == picRight4[a]) { // Èç¹ûÕÒµ½ÁËÆ¥ÅäµÄÊıÖµ
+        for (a = 0; a < n8; a++) {   // éå†æ’é™¤æ•°å€¼åˆ—è¡¨
+            if (i == picRight4[a]) { // å¦‚æœæ‰¾åˆ°äº†åŒ¹é…çš„æ•°å€¼
                 return picRight4[a];
                 //			break; //
-                // ²»ĞèÒª¼ÌĞø¼õÒ»²Ù×÷£¬¿ÉÒÔÌø³öÍâ²ãÑ­»·£¨Èç¹ûĞèÒªµÄ»°£©
+                // ä¸éœ€è¦ç»§ç»­å‡ä¸€æ“ä½œï¼Œå¯ä»¥è·³å‡ºå¤–å±‚å¾ªç¯ï¼ˆå¦‚æœéœ€è¦çš„è¯ï¼‰
             }
         }
     }
@@ -192,21 +192,21 @@ void ChangeTouchKeyvalue(void) {
     }
 }
 
-void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
+void SwitchPic(void) // é€‰æ‹©å¯¹åº”çš„èœå•ï¼Œå¢åŠ å¯¹åº”çš„iå€¼
 {
     switch (PicNum) {
-    // 0-3ÎªÒ»¼¶²Ëµ¥
+    // 0-3ä¸ºä¸€çº§èœå•
     case 0:
         i = 4 + 0;
-        break; // µÚÒ»ÕÅ²Ëµ¥
+        break; // ç¬¬ä¸€å¼ èœå•
 
     case 1:
         i = 4 + 45;
-        break; // µÚ¶şÕÅ²Ëµ¥
+        break; // ç¬¬äºŒå¼ èœå•
 
     case 2:
         i = 4 + 96;
-        break; // µÚÈıÕÅ²Ëµ¥
+        break; // ç¬¬ä¸‰å¼ èœå•
 
     case 3:
         i = 4 + 151;
@@ -220,7 +220,7 @@ void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
 // void SwitchLast(void)
 //{
 //	switch(i)
-//     {        						//0-3ÎªÒ»¼¶²Ëµ¥
+//     {        						//0-3ä¸ºä¸€çº§èœå•
 //         case 4:i = 12;break;    //4-9   		4  5  6  --- 7  8  9
 //         case 13:i = 25;break; 	//10-15		10 11 12 --- 13 14 15
 //         case 26:i = 35;break;	//16-24		16 17 18 19  ---  20 21
@@ -234,7 +234,7 @@ void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
 // void UpdateDisplay(void)
 //{
 //     if (exKeyValue != 0xff) {
-//         if (gTkIsValid == 0) { //ËÉÊÖÇ°Ö»³öÒ»´Î¼ü
+//         if (gTkIsValid == 0) { //æ¾æ‰‹å‰åªå‡ºä¸€æ¬¡é”®
 //             gTkIsValid = 1;
 //             KeyValue = exKeyValue;
 
@@ -264,32 +264,32 @@ void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
 //                    menu = 2 + PicNum;
 //                }
 //            }
-//            /*				Ñ¡ÔñµÚÒ»ÕÅÍ¼Æ¬ºóµÄ²Ëµ¥¹¦ÄÜ¸Ä±ä
+//            /*				é€‰æ‹©ç¬¬ä¸€å¼ å›¾ç‰‡åçš„èœå•åŠŸèƒ½æ”¹å˜
 //            */ else if (menu == 2) {
 //                if (KeyValue == 4) {
 //                    if (i == PicLeft()) {
-//                        i--;    //·½±ãÖ´ĞĞºóĞøµÄforÑ­»·
+//                        i--;    //æ–¹ä¾¿æ‰§è¡Œåç»­çš„forå¾ªç¯
 //                    }
 
 //                    if (i == 4 || i == 3) {
 //                        i = 48;
 //                    }
 
-//                    for (; i != PicLeft(); i--) { //¼õµ½×óÇø¼ä¾ÍÍ£Ö¹
+//                    for (; i != PicLeft(); i--) { //å‡åˆ°å·¦åŒºé—´å°±åœæ­¢
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
 //                    }
 //                }
 
 //                if (KeyValue == 3) {
 //                    if (i == PicRight()) {
-//                        i++;    //·½±ãÖ´ĞĞºóĞøµÄforÑ­»·
+//                        i++;    //æ–¹ä¾¿æ‰§è¡Œåç»­çš„forå¾ªç¯
 //                    }
 
 //                    if (i == 49 || i == 48) {
 //                        i = 4;
 //                    }
 
-//                    for (; i != PicRight(); i++) { //¼Óµ½ÓÒÇø¼ä¾ÍÍ£Ö¹
+//                    for (; i != PicRight(); i++) { //åŠ åˆ°å³åŒºé—´å°±åœæ­¢
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
 //                    }
 //                }
@@ -302,35 +302,35 @@ void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
 //                    menu = 1;
 //                }
 //            }
-//            /*				Ñ¡ÔñµÚ¶şÕÅÍ¼Æ¬ºóµÄ²Ëµ¥¹¦ÄÜ¸Ä±ä
+//            /*				é€‰æ‹©ç¬¬äºŒå¼ å›¾ç‰‡åçš„èœå•åŠŸèƒ½æ”¹å˜
 //            */ else if (menu == 3) {
 //                if (KeyValue == 4) {
 //                    if (i == PicLeft()) {
-//                        i--;    //·½±ãÖ´ĞĞºóĞøµÄforÑ­»·
+//                        i--;    //æ–¹ä¾¿æ‰§è¡Œåç»­çš„forå¾ªç¯
 //                    }
 
 //                    if (i == 50 || i == 49) {
 //                        i = 98;
 //                    }
 
-//                    for (; i != PicLeft(); i--) { //¼õµ½×óÇø¼ä¾ÍÍ£Ö¹
+//                    for (; i != PicLeft(); i--) { //å‡åˆ°å·¦åŒºé—´å°±åœæ­¢
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
 //                    }
 //                }
 
 //                if (KeyValue == 3) {
 //                    if (i == PicRight()) {
-//                        i++;    //·½±ãÖ´ĞĞºóĞøµÄforÑ­»·
+//                        i++;    //æ–¹ä¾¿æ‰§è¡Œåç»­çš„forå¾ªç¯
 //                    }
 
-//                    for (; i != PicRight(); i++) { //¼Óµ½ÓÒÇø¼ä¾ÍÍ£Ö¹
+//                    for (; i != PicRight(); i++) { //åŠ åˆ°å³åŒºé—´å°±åœæ­¢
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
 //                    }
 
 //                    if (i == 99 || i == 98) {
 //                        i = 49;
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
-//                    }//ÌØÊâ´¦Àí×îºó99ÄÇÒ»Ö¡±äÎªµÚ49Ö¡
+//                    }//ç‰¹æ®Šå¤„ç†æœ€å99é‚£ä¸€å¸§å˜ä¸ºç¬¬49å¸§
 //                }
 
 //                if (KeyValue == 2) {
@@ -341,35 +341,35 @@ void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
 //                    menu = 1;
 //                }
 //            }
-//            /*				Ñ¡ÔñµÚÈıÕÅÍ¼Æ¬ºóµÄ²Ëµ¥¹¦ÄÜ¸Ä±ä
+//            /*				é€‰æ‹©ç¬¬ä¸‰å¼ å›¾ç‰‡åçš„èœå•åŠŸèƒ½æ”¹å˜
 //            */ else if (menu == 4) {
 //                if (KeyValue == 4) {
 //                    if (i == PicLeft()) {
-//                        i--;    //·½±ãÖ´ĞĞºóĞøµÄforÑ­»·
+//                        i--;    //æ–¹ä¾¿æ‰§è¡Œåç»­çš„forå¾ªç¯
 //                    }
 
 //                    if (i == 100 || i == 101) {
 //                        i = 144;
 //                    }
 
-//                    for (; i != PicLeft(); i--) { //¼õµ½×óÇø¼ä¾ÍÍ£Ö¹
+//                    for (; i != PicLeft(); i--) { //å‡åˆ°å·¦åŒºé—´å°±åœæ­¢
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
 //                    }
 //                }
 
 //                if (KeyValue == 3) {
 //                    if (i == PicRight()) {
-//                        i++;    //·½±ãÖ´ĞĞºóĞøµÄforÑ­»·
+//                        i++;    //æ–¹ä¾¿æ‰§è¡Œåç»­çš„forå¾ªç¯
 //                    }
 
-//                    for (; i != PicRight(); i++) { //¼Óµ½ÓÒÇø¼ä¾ÍÍ£Ö¹
+//                    for (; i != PicRight(); i++) { //åŠ åˆ°å³åŒºé—´å°±åœæ­¢
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
 //                    }
 
 //                    if (i == 144 || i == 145) {
 //                        i = 100;
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
-//                    }//ÌØÊâ´¦Àí
+//                    }//ç‰¹æ®Šå¤„ç†
 //                }
 
 //                if (KeyValue == 2) {
@@ -380,18 +380,18 @@ void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
 //                    menu = 1;
 //                }
 //            }
-//            /*				Ñ¡ÔñµÚËÄÕÅÍ¼Æ¬ºóµÄ²Ëµ¥¹¦ÄÜ¸Ä±ä
+//            /*				é€‰æ‹©ç¬¬å››å¼ å›¾ç‰‡åçš„èœå•åŠŸèƒ½æ”¹å˜
 //            */ else if (menu == 5) {
 //                if (KeyValue == 4) {
 //                    if (i == PicLeft()) {
-//                        i--;    //·½±ãÖ´ĞĞºóĞøµÄforÑ­»·
+//                        i--;    //æ–¹ä¾¿æ‰§è¡Œåç»­çš„forå¾ªç¯
 //                    }
 
 //                    if (i == 145 || i == 144) {
 //                        i = 175;
 //                    }
 
-//                    for (; i != PicLeft(); i--) { //¼õµ½×óÇø¼ä¾ÍÍ£Ö¹
+//                    for (; i != PicLeft(); i--) { //å‡åˆ°å·¦åŒºé—´å°±åœæ­¢
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
 //                    }
 
@@ -403,7 +403,7 @@ void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
 
 //                if (KeyValue == 3) {
 //                    if (i == PicRight()) {
-//                        i++;    //·½±ãÖ´ĞĞºóĞøµÄforÑ­»·
+//                        i++;    //æ–¹ä¾¿æ‰§è¡Œåç»­çš„forå¾ªç¯
 //                    }
 
 //                    if (i == 175 || i == 176) {
@@ -411,7 +411,7 @@ void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
 //                    }
 
-//                    for (; i != PicRight(); i++) { //¼Óµ½ÓÒÇø¼ä¾ÍÍ£Ö¹
+//                    for (; i != PicRight(); i++) { //åŠ åˆ°å³åŒºé—´å°±åœæ­¢
 //                        Striaight_Mode_Test(QSPI0, QSPI1, i);
 //                    }
 
@@ -436,25 +436,25 @@ void SwitchPic(void) // Ñ¡Ôñ¶ÔÓ¦µÄ²Ëµ¥£¬Ôö¼Ó¶ÔÓ¦µÄiÖµ
 
 void Sys_Scan(void) {
     if (TK_TouchKeyStatus &
-        0x80) { // ÖØÒª²½Öè2:
-                // ´¥Ãş¼üÉ¨ÃèÒ»ÂÖ±êÖ¾£¬ÊÇ·ñµ÷ÓÃTouchKeyScan()Ò»¶¨Òª¸ù¾İ´Ë±êÖ¾Î»ÖÃÆğºó
-        TK_TouchKeyStatus &= 0x7f; // ÖØÒª²½Öè3: Çå³ı±êÖ¾Î»£¬ ĞèÒªÍâ²¿Çå³ı¡£
-        TK_exKeyValueFlag = TK_TouchKeyScan(); // °´¼üÊı¾İ´¦Àíº¯Êı
-        //				printf("°´ÏÂ value£º%u\r\n",
+        0x80) { // é‡è¦æ­¥éª¤2:
+                // è§¦æ‘¸é”®æ‰«æä¸€è½®æ ‡å¿—ï¼Œæ˜¯å¦è°ƒç”¨TouchKeyScan()ä¸€å®šè¦æ ¹æ®æ­¤æ ‡å¿—ä½ç½®èµ·å
+        TK_TouchKeyStatus &= 0x7f; // é‡è¦æ­¥éª¤3: æ¸…é™¤æ ‡å¿—ä½ï¼Œ éœ€è¦å¤–éƒ¨æ¸…é™¤ã€‚
+        TK_exKeyValueFlag = TK_TouchKeyScan(); // æŒ‰é”®æ•°æ®å¤„ç†å‡½æ•°
+        //				printf("æŒ‰ä¸‹ valueï¼š%u\r\n",
         // TK_exKeyValueFlag);
         ChangeTouchKeyvalue();
         //        UpdateDisplay();
-        TK_Restart(); // Æô¶¯ÏÂÒ»ÂÖ×ª»»
+        TK_Restart(); // å¯åŠ¨ä¸‹ä¸€è½®è½¬æ¢
     }
 }
 
 int main(void) {
     // uint16_t k=0;
-    SystemClock_Config(); // ÏµÍ³Ê±ÖÓÑ¡Ôñ
+    SystemClock_Config(); // ç³»ç»Ÿæ—¶é’Ÿé€‰æ‹©
     TK_Init();
-    IO_Init(); // IO³õÊ¼»¯ÍÆÍìÊä³ö¸ß
+    IO_Init(); // IOåˆå§‹åŒ–æ¨æŒ½è¾“å‡ºé«˜
     SC_DMA_Init();
-    //    Uart1_Config(32000000, 9600); //PC11_TX,ÕâÀï²»ÓÃprintfµÄ»°¾ÍÓÃ²»ÉÏÁË
+    //    Uart1_Config(32000000, 9600); //PC11_TX,è¿™é‡Œä¸ç”¨printfçš„è¯å°±ç”¨ä¸ä¸Šäº†
     //		SC_UART0_Init();
     //		printf("\r\n UART0 OK! \r\n");
     //	while(1);
@@ -478,15 +478,15 @@ int main(void) {
     //		PB_BIT(10)=0;
     //		PB_BIT(9)=0;
     while (1) {
-        //        WDT->WDT_CON |= WDT_CON_CLRWDT;	//Î¹¹· WDT_CON_CLRWDT
-        Sys_Scan(); // µ÷ÓÃTK°´¼üº¯Êı
+        //        WDT->WDT_CON |= WDT_CON_CLRWDT;	//å–‚ç‹— WDT_CON_CLRWDT
+        Sys_Scan(); // è°ƒç”¨TKæŒ‰é”®å‡½æ•°
         //			Delay(100);
         lv_timer_handler();
     }
 }
 
 /*==========================================
-                   Ê±ÖÓÔ´Ñ¡Ôñº¯Êı
+                   æ—¶é’Ÿæºé€‰æ‹©å‡½æ•°
 ==========================================*/
 void SystemClock_Config(void) {
     RCC->RCC_KEY = 0XFF;
@@ -502,22 +502,22 @@ void SystemClock_Config(void) {
     RCC->RCC_KEY = 0XFF;
     RCC->RCC_CFG0 = (0x1 << RCC_CFG0_WAIT_Pos); //WAIT = 01
     RCCAHB->AHB_CFG &= ~((uint32_t)AHB_CFG_CLKDIV);
-    RCCAHB->AHB_CFG |= ((uint32_t)0x00000000);    //HLCK 1·ÖÆµ
+    RCCAHB->AHB_CFG |= ((uint32_t)0x00000000);    //HLCK 1åˆ†é¢‘
 #endif
 #if 1                                            // HRC = 64M
     RCC->RCC_CFG0 |= (0X1 << RCC_CFG0_WAIT_Pos); // WAIT = 01~11
     RCC->RCC_CFG0 |= 0x00004000;
     RCC->RCC_CFG0 |= 0x00000200;
     RCCAHB->AHB_CFG &= ~((uint32_t)AHB_CFG_CLKDIV);
-    RCCAHB->AHB_CFG |= ((uint32_t)0x00000000); // HLCK 1·ÖÆµ
+    RCCAHB->AHB_CFG |= ((uint32_t)0x00000000); // HLCK 1åˆ†é¢‘
     RCC->RCC_KEY = 0XFF;
     RCC->RCC_CFG0 |= 0x00000080;
 #endif
     RCC_APB0Cmd(ENABLE);
     RCC_APB1Cmd(ENABLE);
-    RCC_APB0PeriphClockCmd(RCC_APB0Periph_UART1, ENABLE); // ¿ªÆôUART1Ê±ÖÓ
-    RCC_APB0PeriphClockCmd(RCC_APB0Periph_TWI0, ENABLE);  // ¿ªÆôUART1Ê±ÖÓ
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TWI1, ENABLE);  // ¿ªÆôUART1Ê±ÖÓ
+    RCC_APB0PeriphClockCmd(RCC_APB0Periph_UART1, ENABLE); // å¼€å¯UART1æ—¶é’Ÿ
+    RCC_APB0PeriphClockCmd(RCC_APB0Periph_TWI0, ENABLE);  // å¼€å¯UART1æ—¶é’Ÿ
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TWI1, ENABLE);  // å¼€å¯UART1æ—¶é’Ÿ
     __NVIC_EnableIRQ(TWIx_QSPIx_0_2_IRQn);
     __NVIC_EnableIRQ(TWIx_QSPIx_1_3_IRQn);
 }

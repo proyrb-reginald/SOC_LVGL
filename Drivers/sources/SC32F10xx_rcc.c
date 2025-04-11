@@ -39,7 +39,7 @@
  * @{
  */
 /*
-1,LRCµÄ¿ª¹Ø²Î¿¼¹æ¸ñ(Ğ´±£»¤,LRCEN²»ÊÇ×Ü¿ª¹Ø,Ö»ÒªWDTÊ¹ÓÃLRCÒ»¶¨Æô¶¯
+1,LRCçš„å¼€å…³å‚è€ƒè§„æ ¼(å†™ä¿æŠ¤,LRCENä¸æ˜¯æ€»å¼€å…³,åªè¦WDTä½¿ç”¨LRCä¸€å®šå¯åŠ¨
 
 
 */
@@ -56,32 +56,32 @@
   */
 
 /**
- * @brief  RCC È±Ê¡Öµ.
+ * @brief  RCC ç¼ºçœå€¼.
  * @param  None
  * @retval None
  */
 void RCC_DeInit(void) {
     /*		INTEN = 0,LXTEN=0,LIRCEN=0,HXTEN=0,SYSCLKSW=0,Wait[1:0]=b11*/
-    /*Ä¬ÈÏSysClk=HRC*/
+    /*é»˜è®¤SysClk=HRC*/
     RCC->RCC_CFG0 = (RCC_CFG0_SYSCLKSW_HIRC << RCC_CFG0_SYSCLKSW_Pos) |
                     (RCC_CFG0_WAIT3 << RCC_CFG0_WAIT_Pos);
 }
 /**
- * @brief SysCLKSWÑ¡Ôñ
- * @arg RCC_CFG0_SYSCLKSW_TypeDef=RCC_CFG0_SYSCLKSW_HIRC£ºHIRC
+ * @brief SysCLKSWé€‰æ‹©
+ * @arg RCC_CFG0_SYSCLKSW_TypeDef=RCC_CFG0_SYSCLKSW_HIRCï¼šHIRC
  * @arg
- * =RCC_CFG0_SYSCLKSEL_CLKSEL£ºSystemCLk
+ * =RCC_CFG0_SYSCLKSEL_CLKSELï¼šSystemCLk
  * @retval None
  */
 void RCC_SYSCLKSWConfig(RCC_CFG0_SYSCLKSW_TypeDef RCC_SYSCLKSW) {
     RCC->RCC_KEY = 0XFF;
-    /*ÇåSYSCLKSWÑ¡ÔñÎ»*/
+    /*æ¸…SYSCLKSWé€‰æ‹©ä½*/
     RCC->RCC_CFG0 &= ~((uint32_t)RCC_CFG0_SYSCLKSW);
     RCC->RCC_KEY = 0XFF;
     RCC->RCC_CFG0 |= (uint32_t)(RCC_SYSCLKSW << RCC_CFG0_SYSCLKSW_Pos);
 }
 /**
- * @brief SystemCLkÑ¡Ôñ:SysCLKSW=1
+ * @brief SystemCLké€‰æ‹©:SysCLKSW=1
  * @arg RCC_SYSCLKSource_LRC:LRC
  * @arg RCC_SYSCLKSource_HXT:HXT
  * @arg RCC_SYSCLKSource_PLLCLK:PLL
@@ -90,16 +90,16 @@ void RCC_SYSCLKSWConfig(RCC_CFG0_SYSCLKSW_TypeDef RCC_SYSCLKSW) {
  */
 void RCC_SYSCLKConfig(uint32_t RCC_SYSCLKSource) {
     RCC->RCC_KEY = 0XFF;
-    /*SYSCLKSWÑ¡ÔñÎ»=SYSCLKSELÉèÖÃÏî*/
-    RCC->RCC_CFG0 |= (uint32_t)RCC_CFG0_SYSCLKSW; // SWÑ¡ÔñSYSCLKSELÉèÖÃ
-    /*ÇåSYSCLKSEL*/
+    /*SYSCLKSWé€‰æ‹©ä½=SYSCLKSELè®¾ç½®é¡¹*/
+    RCC->RCC_CFG0 |= (uint32_t)RCC_CFG0_SYSCLKSW; // SWé€‰æ‹©SYSCLKSELè®¾ç½®
+    /*æ¸…SYSCLKSEL*/
     RCC->RCC_KEY = 0XFF;
     RCC->RCC_CFG0 &= ~((uint32_t)RCC_CFG0_SYSCLKSEL);
     RCC->RCC_KEY = 0XFF;
     RCC->RCC_CFG0 |= RCC_SYSCLKSource;
 }
 /**
- * @brief SystickCLkÑ¡Ôñ
+ * @brief SystickCLké€‰æ‹©
  * @param  None
  * @retval None
  */
@@ -108,7 +108,7 @@ void RCC_SystickCLKConfig(RCC_SYSTICKCLKSOURCE_TypeDef RCC_SYSTICKCLKSource) {
     RCC->RCC_CFG1 |= (uint32_t)(RCC_SYSTICKCLKSource << RCC_CFG1_STCLKSEL_Pos);
 }
 /**
- * @brief HCLkÑ¡Ôñ
+ * @brief HCLké€‰æ‹©
  * @arg RCC_SYSCLK_Div1
  * @arg RCC_SYSCLK_Div2
  * @arg RCC_SYSCLK_Div4
@@ -121,7 +121,7 @@ void RCC_HCLKConfig(uint32_t RCC_HCLKCLKSource) {
     RCCAHB->AHB_CFG |= RCC_HCLKCLKSource;
 }
 /**
- * @brief APB0Ñ¡Ôñ
+ * @brief APB0é€‰æ‹©
  * @arg RCC_HCLK_Div1
  * @arg RCC_HCLK_Div2
  * @arg RCC_HCLK_Div4
@@ -134,7 +134,7 @@ void RCC_APB0KConfig(uint32_t RCC_APB0CLKSource) {
     RCCAPB0->APB0_CFG |= RCC_APB0CLKSource;
 }
 /**
- * @brief APB1Ñ¡Ôñ
+ * @brief APB1é€‰æ‹©
  * @arg RCC_HCLK_Div1
  * @arg RCC_HCLK_Div2
  * @arg RCC_HCLK_Div4
@@ -147,7 +147,7 @@ void RCC_APB1KConfig(uint32_t RCC_APB1CLKSource) {
     RCCAPB1->APB1_CFG |= RCC_APB1CLKSource;
 }
 /**
- * @brief APB2Ñ¡Ôñ
+ * @brief APB2é€‰æ‹©
  * @arg RCC_HCLK_Div1
  * @arg RCC_HCLK_Div2
  * @arg RCC_HCLK_Div4
@@ -160,7 +160,7 @@ void RCC_APB2KConfig(uint32_t RCC_APB2CLKSource) {
     RCCAPB2->APB2_CFG |= RCC_APB2CLKSource;
 }
 /**
- * @brief PWM0LkÑ¡Ôñ
+ * @brief PWM0Lké€‰æ‹©
  * @param  None
  * @retval None
  */
@@ -169,7 +169,7 @@ void RCC_PWM0CLKConfig(RCC_PWM0CLKSOURCE_TypeDef RCC_PWM0CLKSource) {
     RCC->RCC_CFG1 |= (uint32_t)(RCC_PWM0CLKSource << RCC_CFG1_PWM0CLKSEL_Pos);
 }
 /**
- * @brief LCDCLkÑ¡Ôñ
+ * @brief LCDCLké€‰æ‹©
  * @param  None
  * @retval None
  */
@@ -178,7 +178,7 @@ void RCC_LCDCLKConfig(RCC_LCDCLKSOURCE_TypeDef RCC_LCDCLKSource) {
     RCC->RCC_CFG1 |= (uint32_t)(RCC_LCDCLKSource << RCC_CFG1_LCDCLKSEL_Pos);
 }
 /**
- * @brief BTMCLkÑ¡Ôñ
+ * @brief BTMCLké€‰æ‹©
  * @param  None
  * @retval None
  */
@@ -187,7 +187,7 @@ void RCC_BTMCLKConfig(RCC_BTMCLKSOURCE_TypeDef RCC_BTMCLKSource) {
     RCC->RCC_CFG1 |= (uint32_t)(RCC_BTMCLKSource << RCC_CFG1_BTMCLKSEL_Pos);
 }
 /**
- * @brief Ê¹ÄÜHXT
+ * @brief ä½¿èƒ½HXT
  * @param  None
  * @retval None
  */
@@ -201,7 +201,7 @@ void RCC_HXTCmd(FunctionalState NewState) {
     }
 }
 /**
- * @brief Ê¹ÄÜHIRC
+ * @brief ä½¿èƒ½HIRC
  * @param  None
  * @retval None
  */
@@ -217,7 +217,7 @@ void RCC_HIRCCmd(FunctionalState NewState) {
     }
 }
 /**
- * @brief Ê¹ÄÜLXT
+ * @brief ä½¿èƒ½LXT
  * @param  None
  * @retval None
  */
@@ -231,7 +231,7 @@ void RCC_LXTCmd(FunctionalState NewState) {
     }
 }
 /**
- * @brief Ê¹ÄÜLIRC
+ * @brief ä½¿èƒ½LIRC
  * @param  None
  * @retval None
  */
@@ -245,7 +245,7 @@ void RCC_LIRCCmd(FunctionalState NewState) {
     }
 }
 /**
- * @brief Ê¹ÄÜRCCÖĞ¶Ï
+ * @brief ä½¿èƒ½RCCä¸­æ–­
  * @param  None
  * @retval None
  */
@@ -268,7 +268,7 @@ void RCC_ITConfig(FunctionalState NewState) {
   * @{
   */
 /**
- * @brief PLLÊ±ÖÓÔ´Ñ¡Ôñ
+ * @brief PLLæ—¶é’Ÿæºé€‰æ‹©
  * @param  None
  * @retval None
  */
@@ -280,7 +280,7 @@ void RCC_PLLCLKConfig(RCC_PLLCLKSOURCE_TypeDef RCC_PLLCLKSource) {
 }
 
 /**
- * @brief PLLÊ¹ÄÜ
+ * @brief PLLä½¿èƒ½
  * @arg None
  * @arg None
  * @retval None
@@ -296,7 +296,7 @@ void RCC_PLLCmd(FunctionalState NewState) {
     }
 }
 /**
- * @brief PLLRÊ¹ÄÜ
+ * @brief PLLRä½¿èƒ½
  * @arg None
  * @arg None
  * @retval None
@@ -314,7 +314,7 @@ void RCC_PLLRCmd(FunctionalState NewState) {
 }
 
 /**
- * @brief PLLQÊ¹ÄÜ
+ * @brief PLLQä½¿èƒ½
  * @arg None
  * @arg None
  * @retval None
@@ -330,7 +330,7 @@ void RCC_PLLQCmd(FunctionalState NewState) {
     }
 }
 /**
- * @brief RCCÖĞ¶Ï±êÖ¾
+ * @brief RCCä¸­æ–­æ ‡å¿—
  * @arg RCC_IT_CLKIF
  * @arg None
  * @retval None
@@ -343,9 +343,9 @@ ITStatus RCC_GetITStatus(uint32_t RCC_IT) {
 }
 
 /**
- * @brief RCC×´Ì¬²éÑ¯
- * @arg RCC_FLAG_PLLRDY =0:Î´Ëø¶¨ 		RCC_FLAG_PLLRDY =1:ÒÑËø¶¨
- * @arg RCC_FLAG_LOCKERR =0:Î´Ê§Ëø 		RCC_FLAG_PLLRDY =1:Ê§ËøÒì³£
+ * @brief RCCçŠ¶æ€æŸ¥è¯¢
+ * @arg RCC_FLAG_PLLRDY =0:æœªé”å®š 		RCC_FLAG_PLLRDY =1:å·²é”å®š
+ * @arg RCC_FLAG_LOCKERR =0:æœªå¤±é” 		RCC_FLAG_PLLRDY =1:å¤±é”å¼‚å¸¸
  * @arg None
  * @retval None
  */
@@ -356,7 +356,7 @@ FlagStatus RCC_GetFlagStatus(uint32_t RCC_FLAG) {
     return (RESET);
 }
 /**
- * @brief ÇåRCCÖĞ¶Ï
+ * @brief æ¸…RCCä¸­æ–­
  * @arg RCC_IT_CLKIF
  * @arg None
  * @retval None
@@ -375,7 +375,7 @@ void RCC_ClearITPendingBit(uint32_t RCC_IT) { RCC->RCC_STS |= RCC_IT_CLKIF; }
   * @{
   */
 /**
- * @brief APB0Ê±ÖÓÊ¹ÄÜ
+ * @brief APB0æ—¶é’Ÿä½¿èƒ½
  * @arg None
  * @arg None
  * @retval None
@@ -388,7 +388,7 @@ void RCC_APB0Cmd(FunctionalState NewState) {
     }
 }
 /**
- * @brief APB1Ê±ÖÓÊ¹ÄÜ
+ * @brief APB1æ—¶é’Ÿä½¿èƒ½
  * @arg None
  * @arg None
  * @retval None
@@ -401,7 +401,7 @@ void RCC_APB1Cmd(FunctionalState NewState) {
     }
 }
 /**
- * @brief APB2Ê±ÖÓÊ¹ÄÜ
+ * @brief APB2æ—¶é’Ÿä½¿èƒ½
  * @arg None
  * @arg None
  * @retval None
@@ -414,7 +414,7 @@ void RCC_APB2Cmd(FunctionalState NewState) {
     }
 }
 /**
- * @brief AHBµÄÍâÉèÊ±ÖÓÊ¹ÄÜ
+ * @brief AHBçš„å¤–è®¾æ—¶é’Ÿä½¿èƒ½
  * @arg RCC_AHBPeriph_DMA
  * @arg RCC_AHBPeriph_CRC
  * @retval None
@@ -427,7 +427,7 @@ void RCC_AHBPeriphClockCmd(uint32_t RCC_AHBPeriph, FunctionalState NewState) {
     }
 }
 /**
- * @brief APB0µÄÍâÉèÊ±ÖÓÊ¹ÄÜ
+ * @brief APB0çš„å¤–è®¾æ—¶é’Ÿä½¿èƒ½
  * @arg RCC_APB0Periph_TIM0
  * @arg RCC_APB0Periph_TIM1
  * @arg RCC_APB0Periph_TIM2
@@ -447,7 +447,7 @@ void RCC_APB0PeriphClockCmd(uint32_t RCC_APB0Periph, FunctionalState NewState) {
     }
 }
 /**
- * @brief APB1µÄÍâÉèÊ±ÖÓÊ¹ÄÜ
+ * @brief APB1çš„å¤–è®¾æ—¶é’Ÿä½¿èƒ½
  * @arg RCC_APB1Periph_TIM4
  * @arg RCC_APB1Periph_TIM5
  * @arg RCC_APB1Periph_TIM6
@@ -466,7 +466,7 @@ void RCC_APB1PeriphClockCmd(uint32_t RCC_APB1Periph, FunctionalState NewState) {
 }
 
 /**
- * @brief APB2µÄÍâÉèÊ±ÖÓÊ¹ÄÜ
+ * @brief APB2çš„å¤–è®¾æ—¶é’Ÿä½¿èƒ½
  * @arg RCC_APB2Periph_PWM1
  * @arg RCC_APB2Periph_LCD
  * @arg RCC_APB2Periph_UART3
@@ -493,7 +493,7 @@ void RCC_APB2PeriphClockCmd(uint32_t RCC_APB2Periph, FunctionalState NewState) {
   */
 
 /**
- * @brief AHBÍâÉè¸´Î»
+ * @brief AHBå¤–è®¾å¤ä½
  * @arg RCC_AHBPeriph_DMA
  * @arg RCC_AHBPeriph_CRC
  * @retval None
@@ -507,7 +507,7 @@ void RCC_AHBPeriphResetCmd(uint32_t RCC_AHBPeriph, FunctionalState NewState) {
 }
 
 /**
- * @brief APB0ÍâÉè¸´Î»
+ * @brief APB0å¤–è®¾å¤ä½
  * @arg RCC_APB0Periph_TIM0
  * @arg RCC_APB0Periph_TIM1
  * @arg RCC_APB0Periph_TIM2
@@ -528,7 +528,7 @@ void RCC_APB0PeriphResetCmd(uint32_t RCC_APB0Periph, FunctionalState NewState) {
     }
 }
 /**
- * @brief APB1ÍâÉè¸´Î»
+ * @brief APB1å¤–è®¾å¤ä½
  * @arg RCC_APB1Periph_TIM4
  * @arg RCC_APB1Periph_TIM5
  * @arg RCC_APB1Periph_TIM6
@@ -548,7 +548,7 @@ void RCC_APB1PeriphResetCmd(uint32_t RCC_APB1Periph, FunctionalState NewState) {
 }
 
 /**
- * @brief APB2ÍâÉè¸´Î»
+ * @brief APB2å¤–è®¾å¤ä½
  * @arg RCC_APB2Periph_PWM1
  * @arg RCC_APB2Periph_LCD
  * @arg RCC_APB2Periph_UART3

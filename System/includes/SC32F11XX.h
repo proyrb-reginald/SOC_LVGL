@@ -13,14 +13,14 @@
  *
  ******************************************************************************
  * @attention
- *V0.12¸üÐÂ£º
- *1,SPI0-TXDMASÈ¡Ïû£¬ÒÆÖÁSPI1µÄREV¼Ä´æÆ÷
- *2,UART_CON.11Ôö¼ÓLBDLÎ»
- *3,RCC_CFG0.11Ôö¼ÓLPLDOÎ»£¬.14Ôö¼ÓHIRC72ENÎ»
- *4,AHB_CFG.2Ôö¼ÓIFBENÎ»
- *5,RCC¼Ä´æÆ÷×éÔö¼ÓRCC_KEY¼Ä´æÆ÷£¬ÖØ¹¹RCC¼Ä´æÆ÷½á¹¹Ìå£¬RCC_KEYÆ«ÒÆ=0£¬»ùµØÖ·Æ«ÒÆ=0x0C;
- *6,IAP_CON.31Ôö¼ÓLOCKÎ»
- *7,ÐÂÔöIFBÇø½á¹¹Ìå£¬½öÏÞÄÚ²¿²âÊÔÈËÔ±Ê¹ÓÃ
+ *V0.12æ›´æ–°ï¼š
+ *1,SPI0-TXDMASå–æ¶ˆï¼Œç§»è‡³SPI1çš„REVå¯„å­˜å™¨
+ *2,UART_CON.11å¢žåŠ LBDLä½
+ *3,RCC_CFG0.11å¢žåŠ LPLDOä½ï¼Œ.14å¢žåŠ HIRC72ENä½
+ *4,AHB_CFG.2å¢žåŠ IFBENä½
+ *5,RCCå¯„å­˜å™¨ç»„å¢žåŠ RCC_KEYå¯„å­˜å™¨ï¼Œé‡æž„RCCå¯„å­˜å™¨ç»“æž„ä½“ï¼ŒRCC_KEYåç§»=0ï¼ŒåŸºåœ°å€åç§»=0x0C;
+ *6,IAP_CON.31å¢žåŠ LOCKä½
+ *7,æ–°å¢žIFBåŒºç»“æž„ä½“ï¼Œä»…é™å†…éƒ¨æµ‹è¯•äººå‘˜ä½¿ç”¨
  ******************************************************************************
  */
 
@@ -681,16 +681,16 @@ typedef struct {
                                   offset: 0xC8 */
     __IO uint32_t CAN_IDE;     /*!< CAN IDE register, Address offset: 0xCC */
     __IO uint32_t CAN_TIML;
-    /*!< CAN TimestampLow Timer register, Address offset: 0xD0 */ /*V0.3ÐÂÔö*/
+    /*!< CAN TimestampLow Timer register, Address offset: 0xD0 */ /*V0.3æ–°å¢ž*/
     __IO uint32_t CAN_TIMH;
-    /*!< CAN TimestampHigh Timer register,    Address offset: 0xD4 */ /*V0.3ÐÂÔö*/
+    /*!< CAN TimestampHigh Timer register,    Address offset: 0xD4 */ /*V0.3æ–°å¢ž*/
 } CAN_TypeDef;
 
 ///*
 //	 IFB[200H]~IFB[3FFH] for CustomerOption
 //*/
 ///**
-//* @brief must to OPINX and OPREG operate£¬and  AHB_CFG.2(FIBEN)=1,Protect
+//* @brief must to OPINX and OPREG operateï¼Œand  AHB_CFG.2(FIBEN)=1,Protect
 // Adress=Adress[8:0]*512
 //  */
 // typedef struct
@@ -716,7 +716,7 @@ typedef struct {
          IFB[400H]~IFB[5FFH] for DesignOption
 */
 /**
- * @brief must to OPINX and OPREG operate£¬and
+ * @brief must to OPINX and OPREG operateï¼Œand
  * AHB_CFG.2(FIBEN)=1&&PASSWORD=Decode
  */
 typedef struct {

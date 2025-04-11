@@ -130,7 +130,7 @@ void W25QXX_Write_Page(TWI_QSPIx_TypeDef *qspi, uint8_t *pBuffer,
 void Delay(uint32_t count);
 void W25QXX_DualRead(TWI_QSPIx_TypeDef *qspi, uint8_t *pBuffer, uint8_t Readcmd,
                      uint32_t ReadAddr, uint32_t NumByteToRead);
-// Ö±Í¨º¯Êý
+// ç›´é€šå‡½æ•°
 void W25QXX_FastRead(TWI_QSPIx_TypeDef *qspi,
                      // uint8_t* pBuffer,
                      uint8_t Readcmd, uint32_t ReadAddr,

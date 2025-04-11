@@ -28,7 +28,7 @@ void QSPI_SendCmd(TWI_QSPIx_TypeDef *qspi, uint32_t cmd, uint32_t cmdMode,
                   uint32_t dataMode, uint32_t altermode, uint32_t alter,
                   uint32_t alterSize, uint32_t Dummy);
 
-#define RED 0xF800 // ¶¨ÒåÑÕÉ«³£Á¿ 0xF800
+#define RED 0xF800 // å®šä¹‰é¢œè‰²å¸¸é‡ 0xF800
 #define GREEN 0x07E0
 #define BLUE 0x001F
 #define WHITE 0xFFFF
@@ -38,13 +38,13 @@ void QSPI_SendCmd(TWI_QSPIx_TypeDef *qspi, uint32_t cmd, uint32_t cmdMode,
 #define GRAY50 0x7BEF
 #define GRAY25 0xADB5
 
-#define Horizontal 0 // ºáÏò
-#define Vertical 1   // ×İÏò
+#define Horizontal 0 // æ¨ªå‘
+#define Vertical 1   // çºµå‘
 /* -------------------------LCD_Command-----------------------------*/
 #define Read_Dispaly_idinformaiton2 0x04 //
-#define Read_Display_status 0x09         // ¶ÁÆÁ×´Ì¬
-#define Enter_sleep_m144ode 0x10         // ½øÈëË¯ÃßÄ£Ê½
-#define Sleep_out 0x11                   // ÍÆ³öË¯ÃßÄ£Ê½
+#define Read_Display_status 0x09         // è¯»å±çŠ¶æ€
+#define Enter_sleep_m144ode 0x10         // è¿›å…¥ç¡çœ æ¨¡å¼
+#define Sleep_out 0x11                   // æ¨å‡ºç¡çœ æ¨¡å¼
 #define Partial_Mode_ON 0x12
 #define Normal_Display_mode_ON 0x13
 #define Display_OFF 0X28

@@ -4,16 +4,16 @@
 
 #define LCDROW 386
 #define LCDCOL 340
-#define LCD_Reset_set() PC_BIT(14) = 1 // LCD_RESETÒı½ÅÀ­¸ß
-#define LCD_Reset_clr() PC_BIT(14) = 0 // LCD_RESETÒı½ÅÀ­µÍ
+#define LCD_Reset_set() PC_BIT(14) = 1 // LCD_RESETå¼•è„šæ‹‰é«˜
+#define LCD_Reset_clr() PC_BIT(14) = 0 // LCD_RESETå¼•è„šæ‹‰ä½
 uint8_t INITLCD_flag = 0;
-uint8_t lcd_gram[6][480 * 2] = {0}; ///< ¿ª±ÙÒ»¿éÄÚ´æ¿Õ¼äµ±ÏÔ´æÊ¹ÓÃ
+uint8_t lcd_gram[6][480 * 2] = {0}; ///< å¼€è¾Ÿä¸€å—å†…å­˜ç©ºé—´å½“æ˜¾å­˜ä½¿ç”¨
 
 uint8_t DATA0[] = {0x00, 0x00, 0xff, 0x00, 0xa5};
 uint8_t DATA1[] = {0x00, 0x00, 0xe7, 0x00, 0x10};
 uint8_t DATA2[] = {0x00, 0x00, 0x35, 0x00, 0x00};
 
-uint8_t DATA3[] = {0x00, 0x00, 0x43, 0x00, 0x00}; // RGB565ĞèÒª43H[0]Îª0
+uint8_t DATA3[] = {0x00, 0x00, 0x43, 0x00, 0x00}; // RGB565éœ€è¦43H[0]ä¸º0
 
 uint8_t DATA4[] = {0x00, 0x00, 0x3a, 0x00, 0x01};
 uint8_t DATA5[] = {0x00, 0x00, 0x40, 0x00, 0x01};
@@ -87,7 +87,7 @@ uint8_t DATA67[] = {0x00, 0x00, 0x00, 0x00, 0x03};
 uint8_t DATA68[] = {0x00, 0x00, 0x00, 0x00, 0x02};
 uint8_t DATA69[] = {0x00, 0x00, 0x00, 0x00, 0x2d};
 
-uint8_t DATA70[] = {0x00, 0x00, 0x00, 0x00, 0x02}; ///////ÔÚDATA68ºóÃæ
+uint8_t DATA70[] = {0x00, 0x00, 0x00, 0x00, 0x02}; ///////åœ¨DATA68åé¢
 
 uint8_t DATA71[] = {0x00, 0x00, 0x00, 0x00, 0x1A};
 uint8_t DATA72[] = {0x00, 0x00, 0x00, 0x00, 0x40};
@@ -141,7 +141,7 @@ void delayms(uint16_t num) {
         }
     }
 }
-void delay10s(void) // Îó²î 0us
+void delay10s(void) // è¯¯å·® 0us
 {
     unsigned char a, b, c;
     for (c = 191; c > 0; c--)
@@ -153,13 +153,13 @@ void delay10s(void) // Îó²î 0us
 
 void Init_LCD(TWI_QSPIx_TypeDef *qspi) {
     LCD_Reset_set();
-    Delayms(10); // LCD_RESET¸´Î»ÆÁ
+    Delayms(10); // LCD_RESETå¤ä½å±
     LCD_Reset_clr();
     Delayms(10);
     LCD_Reset_set();
     Delayms(60);
     //------end Reset Sequence-----//
-    /*----¿ªÊ¼¼Ä´æÆ÷Ê¹ÄÜ²Ù×÷ ------ */
+    /*----å¼€å§‹å¯„å­˜å™¨ä½¿èƒ½æ“ä½œ ------ */
     write_senddata(qspi, 0xff, DATA0, sizeof(DATA0));
     write_senddata(qspi, 0xE7, DATA1, sizeof(DATA1)); // TE_output_en
     write_senddata(qspi, 0x35, DATA2, sizeof(DATA2)); // TE_ interface_en
@@ -305,25 +305,25 @@ void Init_LCD(TWI_QSPIx_TypeDef *qspi) {
 //		cmd = 0x02;
 //	}
 //	QSPI_SET_CS_Low(qspi);
-//	// ÉèÖÃ·¢ËÍÃüÁî
+//	// è®¾ç½®å‘é€å‘½ä»¤
 //	QSPIx_Write_ComSet(qspi,QSPI_DATA_1_LINE,QSPI_BYTES_8_BITS,QSPI_CLKONLY_OFF);
 //	QSPIx_Send_singleData(qspi,cmd);
-//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //µÈ´ıBUSYÇåÁã
+//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //ç­‰å¾…BUSYæ¸…é›¶
 //	QSPIx_Write_ComSet(qspi,QSPI_DATA_4_LINES,QSPI_BYTES_24_BITS,QSPI_CLKONLY_OFF);
 //	QSPIx_Send_singleData(qspi,0x002C00);
-//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //µÈ´ıBUSYÇåÁã
-//	//¿ªÆôÖ±Í¨Ä£Ê½
+//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //ç­‰å¾…BUSYæ¸…é›¶
+//	//å¼€å¯ç›´é€šæ¨¡å¼
 ////	qspi->TWI_QSPIx_CON |=
-/// 1<<24;//µ±Ç°Êı¾İÄÚ²¿´«Êä·½ÏòÎªµ±Ç°QSPIX->µ±Ç°QSPI£¨Ö±Í¨µÄRXÄ£Ê½¡¢QSPIÓÃÓÚÍÆÆÁ
-////	qspi->TWI_QSPIx_CON &= ~(1<<25);//Ö±Í¨ÄÚ²¿´«ÊäÊ¹ÄÜÎ»
-/// ¸ÃÎ»¾ö¶¨µ±Ç°QSPIÊÇ·ñÔÊĞí´¥·¢ÁíÒ»¸öQSPI  0£º½ûÖ¹ /	qspi->TWI_QSPIx_CON |=
-/// 1<<26;//Ö±Í¨ÄÚ²¿½ÓÊÕÊ¹ÄÜÎ»  ¸ÃÎ»¾ö¶¨µ±Ç°QSPIÊÇ·ñÔÊĞí±»ÁíÒ»¸öQSPI´¥·¢ 1£ºÊ¹ÄÜ
+/// 1<<24;//å½“å‰æ•°æ®å†…éƒ¨ä¼ è¾“æ–¹å‘ä¸ºå½“å‰QSPIX->å½“å‰QSPIï¼ˆç›´é€šçš„RXæ¨¡å¼ã€QSPIç”¨äºæ¨å±
+////	qspi->TWI_QSPIx_CON &= ~(1<<25);//ç›´é€šå†…éƒ¨ä¼ è¾“ä½¿èƒ½ä½
+/// è¯¥ä½å†³å®šå½“å‰QSPIæ˜¯å¦å…è®¸è§¦å‘å¦ä¸€ä¸ªQSPI  0ï¼šç¦æ­¢ /	qspi->TWI_QSPIx_CON |=
+/// 1<<26;//ç›´é€šå†…éƒ¨æ¥æ”¶ä½¿èƒ½ä½  è¯¥ä½å†³å®šå½“å‰QSPIæ˜¯å¦å…è®¸è¢«å¦ä¸€ä¸ªQSPIè§¦å‘ 1ï¼šä½¿èƒ½
 ////	qspi->TWI_QSPIx_CON |= QSPI_PCLK_8<<8;
-////	ÎÒµÄÀí½âÊÇ£º½ÓÊÕÊ¹ÄÜ£¨STRREN=1£©£¬¶ÁÈ¡FLASHÊı¾İ
+////	æˆ‘çš„ç†è§£æ˜¯ï¼šæ¥æ”¶ä½¿èƒ½ï¼ˆSTRREN=1ï¼‰ï¼Œè¯»å–FLASHæ•°æ®
 //
 //	QSPIx_Strmode_ComSet( qspi, QSPI_INNER_RX,
 // QSPI_INNER_DISTEN,QSPI_INNER_REN);//TWI_QSPIx_CON_STRDIR  1
-// µ±Ç°Êı¾İÄÚ²¿´«Êä·½ÏòÎªµ±Ç°QSPIX->µ±Ç°QSPI£¨Ö±Í¨µÄRXÄ£Ê½¡¢QSPIÓÃÓÚÍÆÆÁ£©
+// å½“å‰æ•°æ®å†…éƒ¨ä¼ è¾“æ–¹å‘ä¸ºå½“å‰QSPIX->å½“å‰QSPIï¼ˆç›´é€šçš„RXæ¨¡å¼ã€QSPIç”¨äºæ¨å±ï¼‰
 //																				//TWI_QSPIx_CON_STRTEN
 // 0
 //																				//TWI_QSPIx_CON_STRREN
@@ -354,7 +354,7 @@ void DispColor(TWI_QSPIx_TypeDef *qspi, uint16_t sx, uint16_t ex, uint16_t sy,
     //	QSPI1->TWI_QSPIx_IDE |=0x80;
     //	QSPIx_Write_ComSet(QSPI1,QSPI_DATA_4_LINES,QSPI_BYTES_32_BITS,QSPI_CLKONLY_OFF);
     //
-    //	DMA_SetCurrDataCounter(DMA0,width*height); //ÉèÖÃDMA´«ÊäÊı
+    //	DMA_SetCurrDataCounter(DMA0,width*height); //è®¾ç½®DMAä¼ è¾“æ•°
     //
     //	QSPI_DMACmd (QSPI1, QSPI_DMAReq_TX, DISABLE  );
     //	QSPI_DMACmd (QSPI1, QSPI_DMAReq_TX, ENABLE  );
@@ -365,8 +365,8 @@ void DispColor(TWI_QSPIx_TypeDef *qspi, uint16_t sx, uint16_t ex, uint16_t sy,
     //	QSPIx_Read_ComSet(QSPI0,QSPI_LMode_4Line,QSPI_DWidth_32bit,QSPI_CLKONLY_ON);
     //	QSPI_Receivelen(QSPI0,STR_MODE_DL1*1/4);
 
-    //	while(!(DMA0->DMA_STS & DMA_STS_TCIF)); //µÈ´ıDMA°áÔËÍê³É
-    //	DMA0->DMA_STS |= DMA_STS_TCIF;//Çå±êÖ¾
+    //	while(!(DMA0->DMA_STS & DMA_STS_TCIF)); //ç­‰å¾…DMAæ¬è¿å®Œæˆ
+    //	DMA0->DMA_STS |= DMA_STS_TCIF;//æ¸…æ ‡å¿—
 
     for (y = sy; y <= ey; y++) {
         for (x = sx; x <= ex; x++) {
@@ -390,10 +390,10 @@ void DispColor(TWI_QSPIx_TypeDef *qspi, uint16_t sx, uint16_t ex, uint16_t sy,
 
 void Lcd_Refrsh_DMA(TWI_QSPIx_TypeDef *qspi, uint16_t sx, uint16_t ex,
                     uint16_t sy, uint16_t ey, uint16_t *color_p) {
-    ///< ½«Õû¸öÊı¾İ°áÔËÒ»´Îµ½DMA
+    ///< å°†æ•´ä¸ªæ•°æ®æ¬è¿ä¸€æ¬¡åˆ°DMA
     LCDBlockWrite(qspi, sx, ex, sy, ey);
     DMA_Cmd(DMA0, DISABLE);
-    DMA_SetCurrDataCounter(DMA0, (ex - sx + 1) * (ey - sy + 1)); // Êı¾İ´«ÊäÁ¿
+    DMA_SetCurrDataCounter(DMA0, (ex - sx + 1) * (ey - sy + 1)); // æ•°æ®ä¼ è¾“é‡
     DMA0->DMA_SADR = (uint32_t)color_p;
 
     QSPI_SET_CS_Low(qspi);
@@ -413,15 +413,15 @@ void Lcd_Refrsh_DMA(TWI_QSPIx_TypeDef *qspi, uint16_t sx, uint16_t ex,
     qspi->TWI_QSPIx_IDE |= 0x80;
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_4_LINES,
                        (uint32_t)QSPI_BYTES_16_BITS,
-                       (uint32_t)QSPI_CLKONLY_OFF); // Ã¿´Î´«Êä2bytes
-    DMA_Cmd(DMA0, ENABLE);                          // Ê¹ÄÜDMA
+                       (uint32_t)QSPI_CLKONLY_OFF); // æ¯æ¬¡ä¼ è¾“2bytes
+    DMA_Cmd(DMA0, ENABLE);                          // ä½¿èƒ½DMA
 
     QSPI1->TWI_QSPIx_STS |= 0X3F;
     DMA0->DMA_STS |= 0x06;
     DMA0->DMA_STS = DMA_STS_SWREQ;
     while (!(DMA0->DMA_STS & DMA_STS_TCIF))
-        ;                          // µÈ´ıDMA°áÔËÍê³É
-    DMA0->DMA_STS |= DMA_STS_TCIF; // Çå±êÖ¾
+        ;                          // ç­‰å¾…DMAæ¬è¿å®Œæˆ
+    DMA0->DMA_STS |= DMA_STS_TCIF; // æ¸…æ ‡å¿—
 
     DMA0->DMA_STS |= 0x06;
     QSPI1->TWI_QSPIx_STS |= 0X3F;
@@ -441,7 +441,7 @@ void DispPic(TWI_QSPIx_TypeDef *qspi, const uint8_t *data, uint32_t len) {
         cmd = 0x02;
     }
     QSPI_SET_CS_Low(qspi);
-    // ÉèÖÃ·¢ËÍÃüÁî
+    // è®¾ç½®å‘é€å‘½ä»¤
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_1_LINE,
                        (uint32_t)QSPI_BYTES_8_BITS, (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, cmd);
@@ -456,16 +456,16 @@ void DispPic(TWI_QSPIx_TypeDef *qspi, const uint8_t *data, uint32_t len) {
                        (uint32_t)QSPI_BYTES_8_BITS, (uint32_t)QSPI_CLKONLY_OFF);
 #if DMA_Test
     REG_SETn(DMA0->DMA_CFG, DMA_CFG_SAINC,
-             0x3L << DMA_CFG_SAINC_Pos); // Ô´µØÖ·µİÔöÑ­»·
-    WRITE_REG(DMA0->DMA_SADR, (uint32_t)QSPI0->TWI_QSPIx_DATA); // Ô´µØÖ·
-    WRITE_REG(DMA0->DMA_CNT, len);                              // ÉèÖÃDMA´«ÊäÊı
+             0x3L << DMA_CFG_SAINC_Pos); // æºåœ°å€é€’å¢å¾ªç¯
+    WRITE_REG(DMA0->DMA_SADR, (uint32_t)QSPI0->TWI_QSPIx_DATA); // æºåœ°å€
+    WRITE_REG(DMA0->DMA_CNT, len);                              // è®¾ç½®DMAä¼ è¾“æ•°
     qspi->TWI_QSPIx_IDE |= 0x80;                                // TXDMAEN
-    REG_SETn(DMA0->DMA_CFG, DMA_CFG_CHEN, 1 << DMA_CFG_CHEN_Pos); // DMAÊ¹ÄÜ
+    REG_SETn(DMA0->DMA_CFG, DMA_CFG_CHEN, 1 << DMA_CFG_CHEN_Pos); // DMAä½¿èƒ½
     REG_SETn(DMA0->DMA_STS, DMA_STS_SWREQ,
-             1 << DMA_STS_SWREQ_Pos); // DMAÈí¼ş´¥·¢
+             1 << DMA_STS_SWREQ_Pos); // DMAè½¯ä»¶è§¦å‘
     while (!(DMA0->DMA_STS & DMA_STS_TCIF))
-        ;                          // µÈ´ıDMA°áÔËÍê³É
-    DMA0->DMA_STS |= DMA_STS_TCIF; // Çå±êÖ¾
+        ;                          // ç­‰å¾…DMAæ¬è¿å®Œæˆ
+    DMA0->DMA_STS |= DMA_STS_TCIF; // æ¸…æ ‡å¿—
 #else
     for (j = 0; j < len; j++) {
         QSPIx_Send_singleData(qspi, data[j]);
@@ -473,7 +473,7 @@ void DispPic(TWI_QSPIx_TypeDef *qspi, const uint8_t *data, uint32_t len) {
             ;
     }
 #endif
-    // /CS À­¸ß
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
     INITLCD_flag = 0;
 }
@@ -488,7 +488,7 @@ void write_sendcmd(TWI_QSPIx_TypeDef *qspi, uint8_t cmddata) {
     }
 
     QSPI_SET_CS_Low(qspi);
-    // ÉèÖÃ·¢ËÍÃüÁî
+    // è®¾ç½®å‘é€å‘½ä»¤
     QSPIx_Write_ComSet(qspi, QSPI_DATA_1_LINE, QSPI_BYTES_8_BITS,
                        QSPI_CLKONLY_OFF);
     for (i = 0; i < 4; i++) {
@@ -496,7 +496,7 @@ void write_sendcmd(TWI_QSPIx_TypeDef *qspi, uint8_t cmddata) {
         while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
             ;
     }
-    // /CS À­¸ß
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
 }
 
@@ -506,24 +506,24 @@ void QSPI_SendCmd(TWI_QSPIx_TypeDef *qspi, uint32_t cmd, uint32_t cmdMode,
                   uint32_t alterSize, uint32_t Dummy) {
     uint8_t i = 0;
     QSPI_SET_CS_Low(qspi);
-    // ÉèÖÃ·¢ËÍÃüÁî
+    // è®¾ç½®å‘é€å‘½ä»¤
     QSPIx_Write_ComSet(qspi, cmdMode, QSPI_BYTES_8_BITS, QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, cmd);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
         ;
-    // ÉèÖÃµØÖ·´óĞ¡·¢ËÍ
+    // è®¾ç½®åœ°å€å¤§å°å‘é€
     QSPIx_Write_ComSet(qspi, addrMode, addrSize, QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, addr);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
         ;
-    // ÉèÖÃ½»Ìæ×Ö½Ú´óĞ¡·¢ËÍ
+    // è®¾ç½®äº¤æ›¿å­—èŠ‚å¤§å°å‘é€
     if (!altermode) {
         QSPIx_Write_ComSet(qspi, altermode, alterSize, QSPI_CLKONLY_OFF);
         QSPIx_Send_singleData(qspi, alter);
         while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
             ;
     }
-    // ÉèÖÃ Dummy
+    // è®¾ç½® Dummy
     if (!Dummy) {
         QSPIx_Write_ComSet(qspi, QSPI_DATA_NONE, QSPI_BYTES_8_BITS,
                            QSPI_CLKONLY_OFF);
@@ -533,10 +533,10 @@ void QSPI_SendCmd(TWI_QSPIx_TypeDef *qspi, uint32_t cmd, uint32_t cmdMode,
                 ;
         }
     }
-    // ÉèÖÃÊı¾İ
+    // è®¾ç½®æ•°æ®
     QSPIx_Write_ComSet(qspi, dataMode, QSPI_BYTES_8_BITS, QSPI_CLKONLY_OFF);
     //	QSPIx_Send_singleData(qspi,cmd);
-    // /CS À­¸ß
+    // /CS æ‹‰é«˜
     //	QSPI_SET_CS_High();
 }
 
@@ -550,7 +550,7 @@ void write_send_onlyQdata(TWI_QSPIx_TypeDef *qspi, uint32_t cmddata,
         cmd = 0x02;
     }
     QSPI_SET_CS_Low(qspi);
-    // ÉèÖÃ·¢ËÍÃüÁî
+    // è®¾ç½®å‘é€å‘½ä»¤
     QSPIx_Write_ComSet(qspi, QSPI_DATA_1_LINE, QSPI_BYTES_8_BITS,
                        QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, cmd);
@@ -572,7 +572,7 @@ void write_send_onlyQdata(TWI_QSPIx_TypeDef *qspi, uint32_t cmddata,
                 ;
         }
     }
-    // /CS À­¸ß
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
 }
 
@@ -601,7 +601,7 @@ void write_senddata(TWI_QSPIx_TypeDef *qspi, uint8_t cmddata, uint8_t *data,
     }
     data[2] = cmddata;
     QSPI_SET_CS_Low(qspi);
-    // ÉèÖÃ·¢ËÍÃüÁî
+    // è®¾ç½®å‘é€å‘½ä»¤
     QSPIx_Write_ComSet(qspi, QSPI_DATA_1_LINE, QSPI_BYTES_8_BITS,
                        QSPI_CLKONLY_OFF);
     for (i = 0; i < len; i++) {
@@ -609,6 +609,6 @@ void write_senddata(TWI_QSPIx_TypeDef *qspi, uint8_t cmddata, uint8_t *data,
         while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
             ;
     }
-    // /CS À­¸ß
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
 }

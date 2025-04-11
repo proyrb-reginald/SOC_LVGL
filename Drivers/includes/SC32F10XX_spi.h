@@ -37,23 +37,23 @@ extern "C" {
  * @}
  */
 typedef enum {
-    SPI0_CON_SPEN_OFF = 0x00, /*!< ¹Ø±ÕSPI              */
-    SPI0_CON_SPEN_ON = 0x01,  /*!< ´ò¿ªSPI              */
+    SPI0_CON_SPEN_OFF = 0x00, /*!< å…³é—­SPI              */
+    SPI0_CON_SPEN_ON = 0x01,  /*!< æ‰“å¼€SPI              */
 } SPI0_CON_SPEN_TypeDef;
 /**
  * @}
  */
 typedef enum {
-    SPI0_CON_CPOL_LOW = 0x00,  /*!< Ê±ÖÓ¿ÕÏÐÎªµÍ              */
-    SPI0_CON_CPOL_HIGH = 0x01, /*!< Ê±ÖÓ¿ÕÏÐÎª¸ß   */
+    SPI0_CON_CPOL_LOW = 0x00,  /*!< æ—¶é’Ÿç©ºé—²ä¸ºä½Ž              */
+    SPI0_CON_CPOL_HIGH = 0x01, /*!< æ—¶é’Ÿç©ºé—²ä¸ºé«˜   */
 } SPI0_CON_CPOL_TypeDef;
 
 /**
  * @}
  */
 typedef enum {
-    SPI0_CON_CPHA_1 = 0x00, /*!<Ê±ÖÓµÚÒ»ÑØ²É¼¯Êý¾Ý>               */
-    SPI0_CON_CPHA_2 = 0x01, /*!< Ê±ÖÓµÚ¶þÑØ²É¼¯Êý¾Ý >             */
+    SPI0_CON_CPHA_1 = 0x00, /*!<æ—¶é’Ÿç¬¬ä¸€æ²¿é‡‡é›†æ•°æ®>               */
+    SPI0_CON_CPHA_2 = 0x01, /*!< æ—¶é’Ÿç¬¬äºŒæ²¿é‡‡é›†æ•°æ® >             */
 } SPI0_CON_CPHA_TypeDef;
 
 /**
@@ -68,8 +68,8 @@ typedef enum {
  * @}
  */
 typedef enum {
-    SPI0_CON_SPMD_8 = 0x00,  /*!<8Î»Ä£Ê½>  */
-    SPI0_CON_SPMD_16 = 0x01, /*!<16Î»Ä£Ê½>              */
+    SPI0_CON_SPMD_8 = 0x00,  /*!<8ä½æ¨¡å¼>  */
+    SPI0_CON_SPMD_16 = 0x01, /*!<16ä½æ¨¡å¼>              */
 } SPI0_CON_SPMD_TypeDef;
 
 /**
@@ -77,8 +77,8 @@ typedef enum {
  */
 typedef enum {
     SPI0_CON_MSTR_Slave =
-        0x00,                    /*!<´ÓÉè±¸>						*/
-    SPI0_CON_MSTR_Master = 0x01, /*!<Ö÷Éè±¸>              */
+        0x00,                    /*!<ä»Žè®¾å¤‡>						*/
+    SPI0_CON_MSTR_Master = 0x01, /*!<ä¸»è®¾å¤‡>              */
 } SPI0_CON_MSTR_TypeDef;
 
 /**

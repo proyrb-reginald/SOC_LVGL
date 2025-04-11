@@ -53,7 +53,7 @@
  * @param  GPIOx: where x can be (1, 2, 3, 4, 5 or 6) to select the GPIO
  * peripheral.
  * @note
- * @note   ³õÊ¼Ä¬ÈÏIOÎª¸ß×èÊäÈëÌ¬
+ * @note   åˆå§‹é»˜è®¤IOä¸ºé«˜é˜»è¾“å…¥æ€
  * @retval None
  */
 
@@ -68,8 +68,8 @@ void GPIO_DeInit(GPIO_TypeDef *GPIOx) {
 /**
  * @brief  Deinitializes the GPIOx peripheral registers
  * @param  GPIOx: where x can be 0 to select the GPIO peripheral.
- * @note   GPIOxÖ»ÄÜÉèÖÃÎªGPIO0
- * @note   ÅäÖÃIOµÄÄ£Ê½£¬ÉÏÀ­ÊäÈë×´Ì¬
+ * @note   GPIOxåªèƒ½è®¾ç½®ä¸ºGPIO0
+ * @note   é…ç½®IOçš„æ¨¡å¼ï¼Œä¸Šæ‹‰è¾“å…¥çŠ¶æ€
  * @retval None
  */
 void GPIO_Init(GPIO_TypeDef *GPIOx, GPIO_InitTypeDef *GPIO_InitStruct) {
@@ -286,23 +286,23 @@ void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct)
        // assert_param(IS_GPIO_SPEED(GPIO_InitStruct->GPIO_Speed));
 
         /* Speed mode configuration */
-        GPIOx->OSPEEDR &= ~(GPIO_OSPEEDR_OSPEED0 << (pinpos * 2));//ÐÞ¸Ä
+        GPIOx->OSPEEDR &= ~(GPIO_OSPEEDR_OSPEED0 << (pinpos * 2));//ä¿®æ”¹
         GPIOx->OSPEEDR |= ((uint32_t)(GPIO_InitStruct->GPIO_Speed) << (pinpos * 2));
 
         /* Check Output mode parameters */
       // assert_param(IS_GPIO_OTYPE(GPIO_InitStruct->GPIO_OType));
 
         /* Output mode configuration */
-        GPIOx->OTYPER &= ~((GPIO_OTYPER_OT0) << ((uint16_t)pinpos));//ÐÞ¸Ä
+        GPIOx->OTYPER &= ~((GPIO_OTYPER_OT0) << ((uint16_t)pinpos));//ä¿®æ”¹
         GPIOx->OTYPER |= (uint16_t)(((uint16_t)GPIO_InitStruct->GPIO_OType) << ((uint16_t)pinpos));
       }
 
-      GPIOx->MODER  &= ~(GPIO_MODER_MODE0 << (pinpos * 2));  //ÐÞ¸Ä
+      GPIOx->MODER  &= ~(GPIO_MODER_MODE0 << (pinpos * 2));  //ä¿®æ”¹
 
       GPIOx->MODER |= (((uint32_t)GPIO_InitStruct->GPIO_Mode) << (pinpos * 2));
 
       /* Pull-up Pull down resistor configuration */
-      GPIOx->PUPDR &= ~(GPIO_PUPDR_PUPD0 << ((uint16_t)pinpos * 2));  //ÐÞ¸Ä
+      GPIOx->PUPDR &= ~(GPIO_PUPDR_PUPD0 << ((uint16_t)pinpos * 2));  //ä¿®æ”¹
       GPIOx->PUPDR |= (((uint32_t)GPIO_InitStruct->GPIO_PuPd) << (pinpos * 2));
     }
   }

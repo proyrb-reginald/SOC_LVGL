@@ -9,7 +9,7 @@ void IO_Init(void) {
     GPIOC->PIN = 0XFFFF;
     GPIOD->PIN = 0XFFFF;
     GPIOB->PXPH = 0xFFFF;
-    // ³õÊ¼»¯UART1 PC1,PC2¿ÚÎªÊäÈë´øÉÏÀ­
+    // åˆå§‹åŒ–UART1 PC1,PC2å£ä¸ºè¾“å…¥å¸¦ä¸Šæ‹‰
     GPIO_InitTypeDef UART1_TX_RX;
     UART1_TX_RX.GPIO_Pin = GPIO_Pin_5;
     UART1_TX_RX.GPIO_Mode = GPIO_Mode_IN;

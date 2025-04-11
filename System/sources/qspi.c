@@ -2,16 +2,16 @@
 #include "main.h"
 
 /*==========================================
-                  QSPI��ʼ������
+                  QSPI初始化函数
 ===========================================*/
 void SC_QSPI_Init(TWI_QSPIx_TypeDef *qspi) {
     QSPI_InitTypeDef QSPI_InitStruct;
     QSPI_StructInit(&QSPI_InitStruct);
-    QSPI_InitStruct.QSPI_CLKONLY = QSPI_CLKONLY_OFF; // ֻ��ʱ�ӹر�
-    QSPI_InitStruct.QSPI_CPMode = QSPI_CPMode_Low;   // ����ʱ�͵�ƽ�͵�һ�ز���
-    QSPI_InitStruct.QSPI_Prescaler = QSPI_Prescaler_1;   // ʱ�ӷ�Ƶ16
-    QSPI_InitStruct.QSPI_Mode = QSPI_Mode_QSPI;          // QSPI��˫��ģʽ
-    QSPI_InitStruct.QSPI_SShift = QSPI_SShift_HalfClock; // ʱ��ƫ��
+    QSPI_InitStruct.QSPI_CLKONLY = QSPI_CLKONLY_OFF; // 只发时钟关闭
+    QSPI_InitStruct.QSPI_CPMode = QSPI_CPMode_Low;   // 空闲时低电平和第一沿采样
+    QSPI_InitStruct.QSPI_Prescaler = QSPI_Prescaler_1;   // 时钟分频16
+    QSPI_InitStruct.QSPI_Mode = QSPI_Mode_QSPI;          // QSPI半双工模式
+    QSPI_InitStruct.QSPI_SShift = QSPI_SShift_HalfClock; // 时钟偏移
     QSPI_Init(qspi, &QSPI_InitStruct);
     QSPI_Cmd(qspi, ENABLE);
 }
@@ -101,8 +101,8 @@ void QSPI_StructInit(QSPI_InitTypeDef *QSPI_InitStruct) {
 // STRTEN, uint32_t STRREN)
 //{
 //     qspi0.Instance = qspi;
-//     strmode.StrDir = STRDIR;//ָ��
-//     strmode.StrTen = STRTEN;//��ַ
+//     strmode.StrDir = STRDIR;//指令
+//     strmode.StrTen = STRTEN;//地址
 //     strmode.StrRen = STRREN;///* 0:Write 1:Read */
 //     qspi0.Init.CommunicateMode = Str_mode_QSPI;
 //     MODIFY_REG(qspi->TWI_QSPIx_CON, TWI_QSPIx_CON_MDOE | TWI_QSPIx_CON_STRDIR
@@ -112,7 +112,7 @@ void QSPI_StructInit(QSPI_InitTypeDef *QSPI_InitStruct) {
 // }
 
 /*=======================================================
-                      QSPI д���ú���
+                      QSPI 写设置函数
 =======================================================*/
 void QSPIx_Write_ComSet(TWI_QSPIx_TypeDef *QSPIx, int32_t LMODE,
                         uint32_t DWIDTH, uint32_t CLKONLY) {
@@ -132,7 +132,7 @@ void QSPIx_Write_ComSet(TWI_QSPIx_TypeDef *QSPIx, int32_t LMODE,
     /* Write to TWI_QSPIx_CON */
     QSPIx->TWI_QSPIx_CON = tmpreg;
     /* Configure QSPI: QSPI_CLKONLY */
-    if (CLKONLY == QSPI_CLKONLY_ON) // �ж�ֻ��ʱ���Ƿ��ֹ
+    if (CLKONLY == QSPI_CLKONLY_ON) // 判断只发时钟是否禁止
     {
         QSPIx->TWI_QSPIx_CON |= QSPI_CLKONLY_ON;
     } else {
@@ -141,7 +141,7 @@ void QSPIx_Write_ComSet(TWI_QSPIx_TypeDef *QSPIx, int32_t LMODE,
 }
 
 /*=======================================================
-                      QSPI �����ú���
+                      QSPI 读设置函数
 =======================================================*/
 void QSPIx_Read_ComSet(TWI_QSPIx_TypeDef *QSPIx, int32_t LMODE, uint32_t DWIDTH,
                        uint32_t CLKONLY) {
@@ -173,7 +173,7 @@ void QSPIx_Read_ComSet(TWI_QSPIx_TypeDef *QSPIx, int32_t LMODE, uint32_t DWIDTH,
 }
 
 /*=======================================================
-                       QSPI ���͵������ݺ���
+                       QSPI 发送单个数据函数
 =========================================================*/
 void QSPIx_Send_singleData(TWI_QSPIx_TypeDef *qspi, uint32_t buf) {
     qspi->TWI_QSPIx_DATA = buf;
@@ -184,7 +184,7 @@ void QSPIx_Enable(TWI_QSPIx_TypeDef *qspi) {
 }
 
 /*=======================================================
-                       QSPI ���Ͷ�����ݺ���
+                       QSPI 发送多个数据函数
 =========================================================*/
 void QSPIx_Send_multipleData(TWI_QSPIx_TypeDef *qspi, uint8_t *buf,
                              uint32_t len) {
@@ -201,7 +201,7 @@ void QSPIx_Send_multipleData(TWI_QSPIx_TypeDef *qspi, uint8_t *buf,
 }
 
 /*=======================================================
-                       QSPI �������ݺ���
+                       QSPI 接收数据函数
 =========================================================*/
 void QSPIx_Receive(TWI_QSPIx_TypeDef *qspi, uint8_t *buf, uint32_t len) {
     uint32_t i, temp = 0;
@@ -221,7 +221,7 @@ void QSPIx_Receive(TWI_QSPIx_TypeDef *qspi, uint8_t *buf, uint32_t len) {
 }
 
 /*=========================================================
-                      QSPI CS IO������
+                      QSPI CS IO口拉高
 ===========================================================*/
 void QSPI_SET_CS_High(TWI_QSPIx_TypeDef *qspi) {
     if (qspi == QSPI0) {
@@ -232,7 +232,7 @@ void QSPI_SET_CS_High(TWI_QSPIx_TypeDef *qspi) {
 }
 
 /*==========================================================
-                       QSPI CS IO������
+                       QSPI CS IO口拉底
 ===========================================================*/
 void QSPI_SET_CS_Low(TWI_QSPIx_TypeDef *qspi) {
     if (qspi == QSPI0) {
@@ -242,39 +242,39 @@ void QSPI_SET_CS_Low(TWI_QSPIx_TypeDef *qspi) {
     }
 }
 
-// �ж�ʹ��
+// 中断使能
 void QSPIx_EnableInt(TWI_QSPIx_TypeDef *qspi) {
-    //		__NVIC_EnableIRQ(TWIx_QSPIx_0_1_IRQn);//��QSPIx�ں��ж�
-    // �ж�ʹ��
+    //		__NVIC_EnableIRQ(TWIx_QSPIx_0_1_IRQn);//开QSPIx内核中断
+    // 中断使能
 #if (SPI_Int_Switch == ON)
-    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_INTEN); // �����ж�
+    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_INTEN); // 允许中断
 #endif
 #if (SPI_QTWIE_Switch == ON)
-    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_QTWIE); // �����ж�
+    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_QTWIE); // 允许中断
 #endif
 #if (SPI_RXNEIE_Switch == ON)
     REG_SET(qspi->TWI_QSPIx_IDE,
-            TWI_QSPIx_IDE_RXNEIE); // �������ջ������ǿ��ж�
+            TWI_QSPIx_IDE_RXNEIE); // 允许接收缓存区非空中断
 #endif
 #if (SPI_TBLE_Switch == ON)
-    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_TBIE); // �������ͻ���Ϊ���ж�
+    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_TBIE); // 允许发送缓存为空中断
 #endif
 #if (SPI_RXFIF_Switch == ON)
-    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_RXIE); // ��������FIFO����ж�
+    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_RXIE); // 允许接收FIFO溢出中断
 #endif
 #if (SPI_RXHIE_Switch == ON)
-    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_RXHIE); // ��������FIFO��һ���ж�
+    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_RXHIE); // 允许接收FIFO超一半中断
 #endif
 #if (SPI_TXHIE_Switch == ON)
-    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_TXHIE); // ��������FIFO��һ���ж�
+    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_TXHIE); // 允许发送FIFO超一半中断
 #endif
 #if (SPI_DLUFIE_Switch == ON)
-    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_DLUFIE); // DL�����ж�ʹ��
+    REG_SET(qspi->TWI_QSPIx_IDE, TWI_QSPIx_IDE_DLUFIE); // DL下溢中断使能
 #endif
 }
 
 /*==========================================================
-                       QSPI0/1�жϷ�����
+                       QSPI0/1中断服务函数
 ===========================================================*/
 void TWI_QSPIx_0_2_IRQHandler() {
     // uint32_t data;

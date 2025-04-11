@@ -272,7 +272,7 @@ typedef enum {
 #define LCD_Communication 1
 #define Striaight_Mode 2
 
-#define DMA_Test 0 // DMA²âÊÔÊ±ĞèÒª¸ÄÄ¿±êµØÖ·ºÍÇëÇóÔ´
+#define DMA_Test 0 // DMAæµ‹è¯•æ—¶éœ€è¦æ”¹ç›®æ ‡åœ°å€å’Œè¯·æ±‚æº
 /*--------------------IO----------------------------*/
 #define CS_IO PB_BIT(13)   // P34
 #define CS_IO1 PB_BIT(2)   // P34
@@ -288,7 +288,7 @@ typedef enum {
 #define TXHIF_IO PC_OT(9)  // P31
 #define WCOL_IO PC_OT(10)  // P32
 #define DLUFIF_IO PC_OT(0) ////////////////////????????????????
-/*---------------------³õÊ¼»¯------------------------*/
+/*---------------------åˆå§‹åŒ–------------------------*/
 #define QSPI_Enable ON
 // #define QSPI_Function           Str_mode_QSPI
 #define QSPI_Function Half_Duplex_QSPI
@@ -297,25 +297,25 @@ typedef enum {
 #define QSPI_SPOS_Select SPOS0
 #define QSPI_SSHIFT_Select QSPI_Collect_HALFCYCLE
 
-// ÆäËûÉèÖÃÏî
+// å…¶ä»–è®¾ç½®é¡¹
 #define QSPI_MSBLSB_Select QSPI_MSB
 #define Master_Slave_Select Master
 
 #define STR_MODE_DL 2 // 65280
-/*------------------SPI0/1ÖĞ¶Ï¿ª¹Ø----------------------*/
-#define SPI_Int_Switch ON    // ÖĞ¶Ï
-#define SPI_TBLE_Switch OFF  // ·¢ËÍ»º´æÎª¿ÕÖĞ¶ÏÊ¹ÄÜ
-#define SPI_QTWIE_Switch OFF // QTWIFÖĞ¶ÏÊ¹ÄÜ
-/*------------------SPI0ÖĞ¶Ï¿ª¹Ø----------------------*/
-#define SPI_RXNEIE_Switch OFF // ½ÓÊÕ»º´æÇø·Ç¿ÕÖĞ¶ÏÊ¹ÄÜ
-#define SPI_RXFIF_Switch OFF  // ½ÓÊÕFIFOÒç³öÖĞ¶ÏÊ¹ÄÜ
-#define SPI_RXHIE_Switch OFF  // ½ÓÊÕFIFO³¬Ò»°ëÖĞ¶ÏÊ¹ÄÜ
-#define SPI_TXHIE_Switch OFF  // ·¢ËÍFIFO³¬Ò»°ëÖĞ¶ÏÊ¹ÄÜ
-#define SPI_DLUFIE_Switch ON  // DLÏÂÒçÖĞ¶ÏÊ¹ÄÜ
+/*------------------SPI0/1ä¸­æ–­å¼€å…³----------------------*/
+#define SPI_Int_Switch ON    // ä¸­æ–­
+#define SPI_TBLE_Switch OFF  // å‘é€ç¼“å­˜ä¸ºç©ºä¸­æ–­ä½¿èƒ½
+#define SPI_QTWIE_Switch OFF // QTWIFä¸­æ–­ä½¿èƒ½
+/*------------------SPI0ä¸­æ–­å¼€å…³----------------------*/
+#define SPI_RXNEIE_Switch OFF // æ¥æ”¶ç¼“å­˜åŒºéç©ºä¸­æ–­ä½¿èƒ½
+#define SPI_RXFIF_Switch OFF  // æ¥æ”¶FIFOæº¢å‡ºä¸­æ–­ä½¿èƒ½
+#define SPI_RXHIE_Switch OFF  // æ¥æ”¶FIFOè¶…ä¸€åŠä¸­æ–­ä½¿èƒ½
+#define SPI_TXHIE_Switch OFF  // å‘é€FIFOè¶…ä¸€åŠä¸­æ–­ä½¿èƒ½
+#define SPI_DLUFIE_Switch ON  // DLä¸‹æº¢ä¸­æ–­ä½¿èƒ½
 
-/*---------------------¿ªºÍ¹Ø-------------------------*/
-#define ON 1  // ¿ª
-#define OFF 0 // ¹Ø
+/*---------------------å¼€å’Œå…³-------------------------*/
+#define ON 1  // å¼€
+#define OFF 0 // å…³
 
 extern uint8_t SPIF_flag;
 extern uint8_t SPI_Receive_Buffer[20];

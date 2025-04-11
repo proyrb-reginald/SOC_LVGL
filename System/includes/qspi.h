@@ -280,46 +280,46 @@ typedef enum {
     (((LMode) == QSPI_Mode_SPI) || ((LMode) == QSPI_Mode_QSPI) ||              \
      ((LMode) == QSPI_Mode_QSPISTRT) || ((LMode) == QSPI_Mode_QSPISTRR))
 
-/*---------------------Ä£Ê½Ñ¡Ôñ-------------------*/
-/*---------------------´«Êä¹¦ÄÜÄ£Ê½Ñ¡Ôñ-------------------*/
+/*---------------------æ¨¡å¼é€‰æ‹©-------------------*/
+/*---------------------ä¼ è¾“åŠŸèƒ½æ¨¡å¼é€‰æ‹©-------------------*/
 #define TWI_Mode 0x00000000U
 #define Full_Duplex_SPI ((uint32_t)(0x1L << TWI_QSPIx_CON_MODE_Pos))
 #define Half_Duplex_QSPI ((uint32_t)(0x2L << TWI_QSPIx_CON_MODE_Pos))
 #define Str_mode_QSPI ((uint32_t)(0x3L << TWI_QSPIx_CON_MODE_Pos))
-/*---------------------´«ÊäÄ£Ê½Ñ¡Ôñ-------------------*/
+/*---------------------ä¼ è¾“æ¨¡å¼é€‰æ‹©-------------------*/
 #define QSPI_CLOCK_MODE_0 0x00000000U
 #define QSPI_CLOCK_MODE_1 ((uint32_t)TWI_QSPIx_CON_CPHA)
 #define QSPI_CLOCK_MODE_2 ((uint32_t)TWI_QSPIx_CON_CPOL)
 #define QSPI_CLOCK_MODE_3 ((uint32_t)(TWI_QSPIx_CON_CPHA | TWI_QSPIx_CON_CPOL))
-/*------------´«Êä·½ÏòÑ¡Ôñ,¿ÉÑ¡MSB»òLSB´«Êä-----------*/
+/*------------ä¼ è¾“æ–¹å‘é€‰æ‹©,å¯é€‰MSBæˆ–LSBä¼ è¾“-----------*/
 #define QSPI_MSB 0x00000000U
 #define QSPI_LSB ((uint32_t)TWI_QSPIx_CON_DORD)
-/*------------´«ÊäÏßÄ£Ê½,¿ÉÑ¡ÎŞÊı¾İ£¬µ¥Ïß£¬Ë«Ïß£¬ËÄÏß´«Êä------------*/
+/*------------ä¼ è¾“çº¿æ¨¡å¼,å¯é€‰æ— æ•°æ®ï¼Œå•çº¿ï¼ŒåŒçº¿ï¼Œå››çº¿ä¼ è¾“------------*/
 #define QSPI_DATA_NONE 0x00000000U
 #define QSPI_DATA_1_LINE ((uint32_t)(0x1L << TWI_QSPIx_CON_LMODE_Pos))
 #define QSPI_DATA_2_LINES ((uint32_t)(0x2L << TWI_QSPIx_CON_LMODE_Pos))
 #define QSPI_DATA_4_LINES                                                      \
     ((uint32_t)((uint32_t)0x3L << TWI_QSPIx_CON_LMODE_Pos))
-/*--------------------´«Êä¿í¶ÈÑ¡Ôñ----------------------*/
+/*--------------------ä¼ è¾“å®½åº¦é€‰æ‹©----------------------*/
 #define QSPI_BYTES_8_BITS 0x00000000U
 #define QSPI_BYTES_16_BITS ((uint32_t)(0x1L << TWI_QSPIx_CON_DWIDTH_Pos))
 #define QSPI_BYTES_24_BITS ((uint32_t)(0x2L << TWI_QSPIx_CON_DWIDTH_Pos))
 #define QSPI_BYTES_32_BITS ((uint32_t)(0x3L << TWI_QSPIx_CON_DWIDTH_Pos))
-/*----------------------¶ÁĞ´Ä£Ê½Ñ¡Ôñ--------------------*/
+/*----------------------è¯»å†™æ¨¡å¼é€‰æ‹©--------------------*/
 #define Write 0x00000000U
 #define Read ((uint32_t)TWI_QSPIx_CON_RW_Msk)
 
-/*----------------------Ö÷´Ó»úÑ¡Ôñ--------------------*/
+/*----------------------ä¸»ä»æœºé€‰æ‹©--------------------*/
 #define Slave 0x00000000U
 #define Master ((uint32_t)TWI_QSPIx_CON_SMSTR)
 
-/*-------------------------²ÉÑùÒÆÎ»---------------------*/
+/*-------------------------é‡‡æ ·ç§»ä½---------------------*/
 #define QSPI_Collect_NONE 0x00000000U
 #define QSPI_Collect_HALFCYCLE ((uint32_t)TWI_QSPIx_CON_SSHIFT)
-/*------------------------Ö»·¢Ê±ÖÓÄ£Ê½------------------*/
+/*------------------------åªå‘æ—¶é’Ÿæ¨¡å¼------------------*/
 #define QSPI_CLKONLY_OFF 0x00000000U
 #define QSPI_CLKONLY_ON ((uint32_t)TWI_QSPIx_CON_CLKONLY)
-/*------------------------Ö±Í¨Ä£Ê½------------------*/
+/*------------------------ç›´é€šæ¨¡å¼------------------*/
 #define QSPI_INNER_TX 0x00000000U
 #define QSPI_INNER_RX ((uint32_t)TWI_QSPIx_CON_STRDIR)
 
@@ -328,7 +328,7 @@ typedef enum {
 
 #define QSPI_INNER_DISREN 0x00000000U
 #define QSPI_INNER_REN ((uint32_t)TWI_QSPIx_CON_STRREN)
-/*--------------------´«ÊäÆµÂÊÑ¡Ôñ----------------------*/
+/*--------------------ä¼ è¾“é¢‘ç‡é€‰æ‹©----------------------*/
 #define QSPI_PCLK_1 0x00000000U
 #define QSPI_PCLK_2 ((uint32_t)(0x1L << TWI_QSPIx_CON_QTWCK_Pos))
 #define QSPI_PCLK_4 ((uint32_t)(0x2L << TWI_QSPIx_CON_QTWCK_Pos))

@@ -1,103 +1,103 @@
 #include "main.h"
 /*===============================================
-                      µÈ´ý¿ÕÏÐ
+                      ç­‰å¾…ç©ºé—²
 =================================================*/
 void W25QXX_WaitIdle(TWI_QSPIx_TypeDef *qspi) {
     uint8_t sta_reg1 = 0x00;
     do {
-        // /CS À­µÍ
+        // /CS æ‹‰ä½Ž
         QSPI_SET_CS_Low(qspi);
-        // ÉèÖÃ·¢ËÍÃüÁî  0X05 Read Status Register 1
+        // è®¾ç½®å‘é€å‘½ä»¤  0X05 Read Status Register 1
         QSPIx_Write_ComSet(qspi, QSPI_DATA_1_LINE, QSPI_BYTES_8_BITS,
                            QSPI_CLKONLY_OFF);
         QSPIx_Send_singleData(qspi, 0x05);
         while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-            ; // µÈ´ýBUSYÇåÁã
-        // ÉèÖÃ»Ø¶ÁÅäÖÃ
+            ; // ç­‰å¾…BUSYæ¸…é›¶
+        // è®¾ç½®å›žè¯»é…ç½®
         QSPIx_Read_ComSet(qspi, QSPI_DATA_1_LINE, QSPI_BYTES_8_BITS,
                           QSPI_CLKONLY_ON);
         while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-            ; // µÈ´ýBUSYÇåÁã
+            ; // ç­‰å¾…BUSYæ¸…é›¶
         QSPIx_Receive(qspi, &sta_reg1, 1);
-        // /CS À­¸ß
+        // /CS æ‹‰é«˜
         QSPI_SET_CS_High(qspi);
     } while ((sta_reg1 & 0x01) == 0x01);
 }
 /***************************************************************************************
- * @brief   ²Á³ýQSPIÄ³¸öÉÈÇø
+ * @brief   æ“¦é™¤QSPIæŸä¸ªæ‰‡åŒº
  * @input
  * @return
  ***************************************************************************************/
 void W25QXX_EraseSector(TWI_QSPIx_TypeDef *qspi, uint32_t sector_id) {
     uint32_t addr = sector_id * 4096;
     //	uint16_t i,j;
-    // /CS À­µÍ
+    // /CS æ‹‰ä½Ž
     QSPI_SET_CS_Low(qspi);
     QSPIx_Write_ComSet(qspi, QSPI_DATA_1_LINE, QSPI_BYTES_8_BITS,
                        QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, WRITE_ENABLE_CMD); // 0x06
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
+        ; // ç­‰å¾…BUSYæ¸…é›¶
     QSPI_SET_CS_High(qspi);
-    // /CS À­µÍ
+    // /CS æ‹‰ä½Ž
     QSPI_SET_CS_Low(qspi);
     QSPIx_Write_ComSet(qspi, QSPI_DATA_1_LINE, QSPI_BYTES_32_BITS,
                        QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, 0x20000000 + addr); // 0x20
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    // /CS À­¸ß
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
     Delay(10);
     W25QXX_WaitIdle(qspi);
 }
 /***************************************************************************************
-  * @brief   SPIÔÚÒ»Ò³(0~65535)ÄÚÐ´ÈëÉÙÓÚ256¸ö×Ö½ÚµÄÊý¾Ý
-  * @input   pBuffer:Êý¾Ý´æ´¢Çø
-             WriteAddr:¿ªÊ¼Ð´ÈëµÄµØÖ·(×î´ó32bit)
-             NumByteToWrite:ÒªÐ´ÈëµÄ×Ö½ÚÊý(×î´ó256),¸ÃÊý²»Ó¦¸Ã³¬¹ý¸ÃÒ³µÄÊ£Óà×Ö½ÚÊý!!!
+  * @brief   SPIåœ¨ä¸€é¡µ(0~65535)å†…å†™å…¥å°‘äºŽ256ä¸ªå­—èŠ‚çš„æ•°æ®
+  * @input   pBuffer:æ•°æ®å­˜å‚¨åŒº
+             WriteAddr:å¼€å§‹å†™å…¥çš„åœ°å€(æœ€å¤§32bit)
+             NumByteToWrite:è¦å†™å…¥çš„å­—èŠ‚æ•°(æœ€å¤§256),è¯¥æ•°ä¸åº”è¯¥è¶…è¿‡è¯¥é¡µçš„å‰©ä½™å­—èŠ‚æ•°!!!
   * @return
 ***************************************************************************************/
 void W25QXX_Write_Page(TWI_QSPIx_TypeDef *qspi, uint8_t *pBuffer,
                        uint32_t WriteAddr, uint16_t NumByteToWrite) {
-    // /CS À­µÍ
+    // /CS æ‹‰ä½Ž
     QSPI_SET_CS_Low(qspi);
 
     QSPIx_Write_ComSet(qspi, QSPI_DATA_1_LINE, QSPI_BYTES_8_BITS,
                        QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, WRITE_ENABLE_CMD);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    // /CS À­¸ß
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
 
-    // /CS À­µÍ
+    // /CS æ‹‰ä½Ž
     QSPI_SET_CS_Low(qspi);
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_1_LINE,
                        (uint32_t)QSPI_BYTES_8_BITS, (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, 0x32);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
+        ; // ç­‰å¾…BUSYæ¸…é›¶
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_1_LINE,
                        (uint32_t)QSPI_BYTES_24_BITS,
                        (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, WriteAddr);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
+        ; // ç­‰å¾…BUSYæ¸…é›¶
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_4_LINES,
                        (uint32_t)QSPI_BYTES_8_BITS, (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_multipleData(qspi, pBuffer, NumByteToWrite);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    // /CS À­¸ß
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
-    W25QXX_WaitIdle(qspi); // µÈ´ýÐ´Èë½áÊø
+    W25QXX_WaitIdle(qspi); // ç­‰å¾…å†™å…¥ç»“æŸ
 }
 /*==================================================================================
-                      ¶ÁÈ¡ FLASH Ö¸¶¨µØÖ·Êý¾Ý
-  * @input   pBuffer:Êý¾Ý´æ´¢Çø
-             ReadAddr:¿ªÊ¼¶ÁÈ¡µÄµØÖ·(×î´ó32bit)
-             NumByteToRead:Òª¶ÁÈ¡µÄ×Ö½ÚÊý(×î´ó65535)
+                      è¯»å– FLASH æŒ‡å®šåœ°å€æ•°æ®
+  * @input   pBuffer:æ•°æ®å­˜å‚¨åŒº
+             ReadAddr:å¼€å§‹è¯»å–çš„åœ°å€(æœ€å¤§32bit)
+             NumByteToRead:è¦è¯»å–çš„å­—èŠ‚æ•°(æœ€å¤§65535)
 =====================================================================================*/
 void W25QXX_Read(TWI_QSPIx_TypeDef *qspi, uint8_t *pBuffer, uint8_t Readcmd,
                  uint32_t ReadAddr, uint32_t NumByteToRead) {
@@ -107,48 +107,48 @@ void W25QXX_Read(TWI_QSPIx_TypeDef *qspi, uint8_t *pBuffer, uint8_t Readcmd,
                        QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, WRITE_ENABLE_CMD);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    // /CS À­¸ß
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
-    // /CS À­µÍ
+    // /CS æ‹‰ä½Ž
     QSPI_SET_CS_Low(qspi);
-    // ÉèÖÃ·¢ËÍÃüÁî
+    // è®¾ç½®å‘é€å‘½ä»¤
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_1_LINE,
                        (uint32_t)QSPI_BYTES_8_BITS, (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, Readcmd);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    // ÉèÖÃ·¢ËÍµØÖ·
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    // è®¾ç½®å‘é€åœ°å€
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_1_LINE,
                        (uint32_t)QSPI_BYTES_24_BITS,
                        (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, ReadAddr);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    // ÉèÖÃ¿ÕÖÜÆÚ
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    // è®¾ç½®ç©ºå‘¨æœŸ
     qspi->TWI_QSPIx_REV = 0xA05F0700;
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_NONE,
                        (uint32_t)QSPI_BYTES_32_BITS,
                        (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, 0XFF000000);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
+        ; // ç­‰å¾…BUSYæ¸…é›¶
     qspi->TWI_QSPIx_REV = 0xA05F0000;
-    // ½ÓÊÕÊý¾Ý
+    // æŽ¥æ”¶æ•°æ®
     QSPIx_Read_ComSet(qspi, (int32_t)QSPI_DATA_4_LINES,
                       (uint32_t)QSPI_BYTES_8_BITS, (uint32_t)QSPI_CLKONLY_ON);
     QSPIx_Receive(qspi, pBuffer, NumByteToRead);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
+        ; // ç­‰å¾…BUSYæ¸…é›¶
     //	Delay(1000);
-    // /CS À­¸ß
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
 }
 /*==================================================================================
-                      ¶ÁÈ¡ FLASH Ö¸¶¨µØÖ·Êý¾Ý
-  * @input   pBuffer:Êý¾Ý´æ´¢Çø
-             ReadAddr:¿ªÊ¼¶ÁÈ¡µÄµØÖ·(×î´ó32bit)
-             NumByteToRead:Òª¶ÁÈ¡µÄ×Ö½ÚÊý(×î´ó65535)
+                      è¯»å– FLASH æŒ‡å®šåœ°å€æ•°æ®
+  * @input   pBuffer:æ•°æ®å­˜å‚¨åŒº
+             ReadAddr:å¼€å§‹è¯»å–çš„åœ°å€(æœ€å¤§32bit)
+             NumByteToRead:è¦è¯»å–çš„å­—èŠ‚æ•°(æœ€å¤§65535)
 =====================================================================================*/
 // void W25QXX_FastRead( TWI_QSPIx_TypeDef
 // *qspi,//W25QXX_FastRead(qspi_flash,QSPI_Receive_Buffer,0xEB,0x002000,STR_MODE_DL/4);
@@ -159,29 +159,29 @@ void W25QXX_Read(TWI_QSPIx_TypeDef *qspi, uint8_t *pBuffer, uint8_t Readcmd,
 //                   )
 //{
 //	QSPIx_Write_ComSet(qspi,QSPI_DATA_1_LINE,QSPI_BYTES_8_BITS,QSPI_CLKONLY_OFF);
-//	// /CS À­µÍ
+//	// /CS æ‹‰ä½Ž
 //	QSPI_SET_CS_Low(qspi);
 
 //	QSPIx_Send_singleData(qspi,Readcmd);
-//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //µÈ´ýBUSYÇåÁã
+//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //ç­‰å¾…BUSYæ¸…é›¶
 //
-//	// ÉèÖÃ·¢ËÍµØÖ·
+//	// è®¾ç½®å‘é€åœ°å€
 //	QSPIx_Write_ComSet(qspi,QSPI_DATA_4_LINES,QSPI_BYTES_32_BITS,QSPI_CLKONLY_OFF);
 //	QSPIx_Send_singleData(qspi,ReadAddr);
-//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //µÈ´ýBUSYÇåÁã
-////	// ÉèÖÃ¿ÕÖÜÆÚ
+//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //ç­‰å¾…BUSYæ¸…é›¶
+////	// è®¾ç½®ç©ºå‘¨æœŸ
 //	qspi->TWI_QSPIx_REV = 0xA05F0700;
 //	QSPIx_Write_ComSet(qspi,QSPI_DATA_NONE,QSPI_BYTES_24_BITS,QSPI_CLKONLY_OFF);
 //	QSPIx_Send_singleData(qspi,0XFF0000);
-//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //µÈ´ýBUSYÇåÁã
+//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //ç­‰å¾…BUSYæ¸…é›¶
 //	qspi->TWI_QSPIx_REV = 0xA05F0000;
-//	// Ö±Í¨Ä£Ê½½ÓÊÕÊý¾Ý
+//	// ç›´é€šæ¨¡å¼æŽ¥æ”¶æ•°æ®
 ////	qspi->TWI_QSPIx_CON |= QSPI_PCLK_8<<8;
 // #if Test_Mode == Striaight_Mode
-// //ÎÒµÄÀí½âÊÇ£ºDMA½«FLASHµÄÊý¾ÝÍùQSPI_FLASHÖÐÐ´£¨°á£©£¿
+// //æˆ‘çš„ç†è§£æ˜¯ï¼šDMAå°†FLASHçš„æ•°æ®å¾€QSPI_FLASHä¸­å†™ï¼ˆæ¬ï¼‰ï¼Ÿ
 // QSPIx_Strmode_ComSet(
 // qspi, QSPI_INNER_TX, QSPI_INNER_TEN,QSPI_INNER_DISREN);//TWI_QSPIx_CON_STRDIR
-// 0   Ö±Í¨µÄTXÄ£Ê½¡¢QSPIÓÃÓÚ¶ÁFLASH
+// 0   ç›´é€šçš„TXæ¨¡å¼ã€QSPIç”¨äºŽè¯»FLASH
 //																				//TWI_QSPIx_CON_STRTEN
 // 1
 //																				//TWI_QSPIx_CON_STRREN
@@ -196,27 +196,27 @@ void W25QXX_Read(TWI_QSPIx_TypeDef *qspi, uint8_t *pBuffer, uint8_t Readcmd,
 //	while(!DL_OK);
 //	//PC_BIT(0) = 0;
 //	DL_OK = 0;
-//	// /CS À­¸ß
+//	// /CS æ‹‰é«˜
 //	QSPI_SET_CS_High(qspi);
 //	FLASH_OK = 1;
 // #else
 //
 //	#if DMA_Test
-//    WRITE_REG(DMA0->DMA_DADR,(uint32_t)pBuffer); //Ä¿±êµØÖ·
-//	WRITE_REG(DMA0->DMA_CNT,NumByteToRead);//ÉèÖÃDMA´«ÊäÊý
+//    WRITE_REG(DMA0->DMA_DADR,(uint32_t)pBuffer); //ç›®æ ‡åœ°å€
+//	WRITE_REG(DMA0->DMA_CNT,NumByteToRead);//è®¾ç½®DMAä¼ è¾“æ•°
 //	qspi->TWI_QSPIx_IDE |= 0x40;//RXDMAEN
-//	REG_SETn(DMA0->DMA_CFG,DMA_CFG_CHEN,1 << DMA_CFG_CHEN_Pos); //DMAÊ¹ÄÜ
+//	REG_SETn(DMA0->DMA_CFG,DMA_CFG_CHEN,1 << DMA_CFG_CHEN_Pos); //DMAä½¿èƒ½
 //	QSPIx_Read_ComSet(qspi,QSPI_DATA_4_LINES,QSPI_BYTES_8_BITS,QSPI_CLKONLY_ON,NumByteToRead);
 ////	REG_SETn(DMA0->DMA_STS,DMA_STS_SWREQ,1 << DMA_STS_SWREQ_Pos);
-/////DMAÈí¼þ´¥·¢
-//	while(!(DMA0->DMA_STS & DMA_STS_TCIF)); //µÈ´ýDMA°áÔËÍê³É
-//	DMA0->DMA_STS |= DMA_STS_TCIF;//Çå±êÖ¾
+/////DMAè½¯ä»¶è§¦å‘
+//	while(!(DMA0->DMA_STS & DMA_STS_TCIF)); //ç­‰å¾…DMAæ¬è¿å®Œæˆ
+//	DMA0->DMA_STS |= DMA_STS_TCIF;//æ¸…æ ‡å¿—
 //	#else
 //	QSPIx_Read_ComSet(qspi,QSPI_DATA_4_LINES,QSPI_BYTES_8_BITS,QSPI_CLKONLY_ON,NumByteToRead);
 ////	QSPIx_Receive(qspi,pBuffer,NumByteToRead);
 //	#endif
-//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //µÈ´ýBUSYÇåÁã
-//	// /CS À­¸ß
+//	while(READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY)); //ç­‰å¾…BUSYæ¸…é›¶
+//	// /CS æ‹‰é«˜
 //	QSPI_SET_CS_High(qspi);
 // #endif
 //
@@ -225,28 +225,28 @@ void W25QXX_DualRead(TWI_QSPIx_TypeDef *qspi, uint8_t *pBuffer, uint8_t Readcmd,
                      uint32_t ReadAddr, uint32_t NumByteToRead) {
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_1_LINE,
                        (uint32_t)QSPI_BYTES_8_BITS, (uint32_t)QSPI_CLKONLY_OFF);
-    // /CS À­µÍ
+    // /CS æ‹‰ä½Ž
     QSPI_SET_CS_Low(qspi);
 
     QSPIx_Send_singleData(qspi, Readcmd);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
+        ; // ç­‰å¾…BUSYæ¸…é›¶
 
-    // ÉèÖÃ·¢ËÍµØÖ·
+    // è®¾ç½®å‘é€åœ°å€
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_2_LINES,
                        (uint32_t)QSPI_BYTES_24_BITS,
                        (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, ReadAddr);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    //	// ÉèÖÃ¿ÕÖÜÆÚ
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    //	// è®¾ç½®ç©ºå‘¨æœŸ
     qspi->TWI_QSPIx_REV = 0xA05F0700;
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_NONE,
                        (uint32_t)QSPI_BYTES_16_BITS,
                        (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, 0XFF0000);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
+        ; // ç­‰å¾…BUSYæ¸…é›¶
     qspi->TWI_QSPIx_REV = 0xA05F0000;
 
     QSPIx_Read_ComSet(qspi, (int32_t)QSPI_DATA_2_LINES,
@@ -255,54 +255,54 @@ void W25QXX_DualRead(TWI_QSPIx_TypeDef *qspi, uint8_t *pBuffer, uint8_t Readcmd,
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_RXNEIF))
         ;
     QSPIx_Receive(qspi, pBuffer,
-                  NumByteToRead); // ´Ë´¦NumByteToReadÒÔ1byteÎªµ¥Î»
+                  NumByteToRead); // æ­¤å¤„NumByteToReadä»¥1byteä¸ºå•ä½
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    // /CS À­¸ß
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    // /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
 }
 /*==========================================
-       ËÄÏßSPI¶ÁÈ¡ FLASH ID
+       å››çº¿SPIè¯»å– FLASH ID
 ============================================*/
 uint16_t W25Q16_QSPIReadID(TWI_QSPIx_TypeDef *qspi) {
     uint8_t u8RxData[4] = {0};
 
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_1_LINE,
                        (uint32_t)QSPI_BYTES_8_BITS, (uint32_t)QSPI_CLKONLY_OFF);
-    // /CS À­µÍ
+    // /CS æ‹‰ä½Ž
     QSPI_SET_CS_Low(qspi);
 
-    // ÉèÖÃ·¢ËÍÃüÁî  0X94 Read Manufacturer/Device ID
+    // è®¾ç½®å‘é€å‘½ä»¤  0X94 Read Manufacturer/Device ID
     QSPIx_Send_singleData(qspi, 0x94);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    // ÉèÖÃ 24bit µØÖ·´óÐ¡·¢ËÍ
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    // è®¾ç½® 24bit åœ°å€å¤§å°å‘é€
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_4_LINES,
                        (uint32_t)QSPI_BYTES_32_BITS,
                        (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, 0x000000);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
-    // ÉèÖÃ 3¸öDummy
+        ; // ç­‰å¾…BUSYæ¸…é›¶
+    // è®¾ç½® 3ä¸ªDummy
     qspi->TWI_QSPIx_REV = 0xA05F0700;
     QSPIx_Write_ComSet(qspi, (int32_t)QSPI_DATA_NONE,
                        (uint32_t)QSPI_BYTES_32_BITS,
                        (uint32_t)QSPI_CLKONLY_OFF);
     QSPIx_Send_singleData(qspi, 0xFF0000);
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
+        ; // ç­‰å¾…BUSYæ¸…é›¶
     qspi->TWI_QSPIx_REV = 0xA05F0000;
 
-    // »Ø¶Á 2¸ö bytes
+    // å›žè¯» 2ä¸ª bytes
     QSPIx_Read_ComSet(qspi, (int32_t)QSPI_DATA_4_LINES,
                       (uint32_t)QSPI_BYTES_16_BITS,
                       (uint32_t)QSPI_CLKONLY_ON); // yly V0.3 test
     PD_BIT(0) = 0;
     while (READ_BIT(qspi->TWI_QSPIx_STS, TWI_QSPIx_STS_BUSY))
-        ; // µÈ´ýBUSYÇåÁã
+        ; // ç­‰å¾…BUSYæ¸…é›¶
     QSPIx_Receive(qspi, u8RxData, 1);
     DL_OK = 0;
-    //	// /CS À­¸ß
+    //	// /CS æ‹‰é«˜
     QSPI_SET_CS_High(qspi);
     //	printf("%X\n",(u8RxData[0] ) | u8RxData[1]<<8);
     return ((u8RxData[0]) | u8RxData[1] << 8);

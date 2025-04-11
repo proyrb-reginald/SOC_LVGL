@@ -2,50 +2,50 @@
 
 void SC_DMA_Init(void) {
 #if Test_Mode == Striaight_Mode
-    RCCAHB->AHB_CFG |= 0X01; // ø™∆ÙDMAƒ£øÈ ±÷”
+    RCCAHB->AHB_CFG |= 0X01; // ÂºÄÂêØDMAÊ®°ÂùóÊó∂Èíü
 
-    /*  πƒ‹DMAµƒ ±÷” */
+    /* ‰ΩøËÉΩDMAÁöÑÊó∂Èíü */
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA, ENABLE);
-    /* DMAÕ‚…Ë≈‰÷√ */
+    /* DMAÂ§ñËÆæÈÖçÁΩÆ */
     CLEAR_REG(DMA0->DMA_CFG);
     CLEAR_REG(DMA0->DMA_CNT);
-    DMA_InitTypeDef DMA_InitStruct; // ∂®“ÂDMA≥ı ºªØΩ·ππÃÂ±‰¡ø
+    DMA_InitTypeDef DMA_InitStruct; // ÂÆö‰πâDMAÂàùÂßãÂåñÁªìÊûÑ‰ΩìÂèòÈáè
     DMA_StructInit(&DMA_InitStruct);
-    DMA_InitStruct.DMA_Burst = DMA_Burst_Disable;               // Brustƒ£ Ωπÿ±’
-    DMA_InitStruct.DMA_CircularMode = DMA_CircularMode_Disable; // ø™∆Ù—≠ª∑ƒ£ Ω
-    DMA_InitStruct.DMA_DataSize = DMA_DataSize_HakfWord;  // ¥´ ‰øÌ∂»Œ™◊÷Ω⁄
-    DMA_InitStruct.DMA_SourceMode = DMA_SourceMode_INC;   // ‘¥µÿ÷∑πÃ∂®
-    DMA_InitStruct.DMA_TargetMode = DMA_TargetMode_FIXED; // ƒø±Íµÿ÷∑πÃ∂®
+    DMA_InitStruct.DMA_Burst = DMA_Burst_Disable;               // BrustÊ®°ÂºèÂÖ≥Èó≠
+    DMA_InitStruct.DMA_CircularMode = DMA_CircularMode_Disable; // ÂºÄÂêØÂæ™ÁéØÊ®°Âºè
+    DMA_InitStruct.DMA_DataSize = DMA_DataSize_HakfWord;  // ‰º†ËæìÂÆΩÂ∫¶‰∏∫Â≠óËäÇ
+    DMA_InitStruct.DMA_SourceMode = DMA_SourceMode_INC;   // Ê∫êÂú∞ÂùÄÂõ∫ÂÆö
+    DMA_InitStruct.DMA_TargetMode = DMA_TargetMode_FIXED; // ÁõÆÊ†áÂú∞ÂùÄÂõ∫ÂÆö
 
     //  DMA_InitStruct.DMA_SrcAddress = (uint32_t)&QSPI0->TWI_QSPIx_DATA;
-    //  //…Ë÷√µ⁄“ª¥Œ¥´ ‰µƒ ◊µÿ÷∑
+    //  //ËÆæÁΩÆÁ¨¨‰∏ÄÊ¨°‰º†ËæìÁöÑÈ¶ñÂú∞ÂùÄ
     DMA_InitStruct.DMA_DstAddress =
-        (uint32_t)&QSPI1->TWI_QSPIx_DATA;                  // …Ë÷√ƒø±Íµÿ÷∑
+        (uint32_t)&QSPI1->TWI_QSPIx_DATA;                  // ËÆæÁΩÆÁõÆÊ†áÂú∞ÂùÄ
     DMA_InitStruct.DMA_Request = DMA_Request_TWI_QSPI1_TX; //
     DMA_Init(DMA0, &DMA_InitStruct);
 
     //	WRITE_REG(DMA0->DMA_CNT,4);
-    //	REG_SET(DMA0->DMA_CFG,DMA_CFG_INTEN);//¥Úø™DMA÷–∂œ
-    //	REG_SET(DMA0->DMA_CFG,DMA_CFG_TCIE);//¥Úø™DMA¥´ ‰ÕÍ≥…÷–∂œ
-    //	REG_SET(DMA0->DMA_CFG,DMA_CFG_CHEN);//DMA0Õ®µ¿ πƒ‹
+    //	REG_SET(DMA0->DMA_CFG,DMA_CFG_INTEN);//ÊâìÂºÄDMA‰∏≠Êñ≠
+    //	REG_SET(DMA0->DMA_CFG,DMA_CFG_TCIE);//ÊâìÂºÄDMA‰º†ËæìÂÆåÊàê‰∏≠Êñ≠
+    //	REG_SET(DMA0->DMA_CFG,DMA_CFG_CHEN);//DMA0ÈÄöÈÅì‰ΩøËÉΩ
 
 #elif Test_Mode == LCD_Communication
-    RCCAHB->AHB_CFG |= 0X01; // ø™∆ÙDMAƒ£øÈ ±÷”
+    RCCAHB->AHB_CFG |= 0X01; // ÂºÄÂêØDMAÊ®°ÂùóÊó∂Èíü
 
     CLEAR_REG(DMA0->DMA_CFG);
     CLEAR_REG(DMA0->DMA_CNT);
-    // “‘œ¬Œ™SPI∑¢ÀÕDMA≈‰÷√
+    // ‰ª•‰∏ã‰∏∫SPIÂèëÈÄÅDMAÈÖçÁΩÆ
     REG_SETn(DMA0->DMA_CFG, DMA_CFG_TXWIDTH,
-             0x0L << DMA_CFG_TXWIDTH_Pos);    // ¥´ ‰øÌ∂»8bit
-    CLEAR_BIT(DMA0->DMA_CFG, DMA_CFG_TPTYPE); // µ•¥Œ¥´ ‰
-    CLEAR_BIT(DMA0->DMA_CFG, DMA_CFG_CIRC);   // πÿ±’—≠ª∑
+             0x0L << DMA_CFG_TXWIDTH_Pos);    // ‰º†ËæìÂÆΩÂ∫¶8bit
+    CLEAR_BIT(DMA0->DMA_CFG, DMA_CFG_TPTYPE); // ÂçïÊ¨°‰º†Ëæì
+    CLEAR_BIT(DMA0->DMA_CFG, DMA_CFG_CIRC);   // ÂÖ≥Èó≠Âæ™ÁéØ
     //	REG_SETn(DMA0->DMA_CFG,DMA_CFG_SAINC,0x0L <<
-    // DMA_CFG_SAINC_Pos);//‘¥µÿ÷∑πÃ∂®
+    // DMA_CFG_SAINC_Pos);//Ê∫êÂú∞ÂùÄÂõ∫ÂÆö
     REG_SETn(DMA0->DMA_CFG, DMA_CFG_DAINC,
-             0x0L << DMA_CFG_DAINC_Pos); // ƒø±Íµÿ÷∑πÃ∂®
+             0x0L << DMA_CFG_DAINC_Pos); // ÁõÆÊ†áÂú∞ÂùÄÂõ∫ÂÆö
     REG_SETn(DMA0->DMA_CFG, DMA_CFG_REQSRC,
              14 << DMA_CFG_REQSRC_Pos);     // QSPI0_TX
-    WRITE_REG(DMA0->DMA_SADR, (uint32_t)0); // ‘¥µÿ÷∑¥˝∫Û–¯ÃÓ–¥
+    WRITE_REG(DMA0->DMA_SADR, (uint32_t)0); // Ê∫êÂú∞ÂùÄÂæÖÂêéÁª≠Â°´ÂÜô
     WRITE_REG(DMA0->DMA_DADR, (uint32_t)&QSPI1->TWI_QSPIx_DATA);
     //	WRITE_REG(DMA0->DMA_CNT,20);
 #endif
@@ -55,43 +55,43 @@ void SC_DMA_Init(void) {
 //	CLEAR_REG(DMA0->DMA_CFG);
 //	CLEAR_REG(DMA0->DMA_CNT);
 //
-////	//“‘œ¬Œ™SPI∑¢ÀÕDMA≈‰÷√
+////	//‰ª•‰∏ã‰∏∫SPIÂèëÈÄÅDMAÈÖçÁΩÆ
 //////	REG_SETn(DMA0->DMA_CFG,DMA_CFG_TXWIDTH,0x0L <<
-/// DMA_CFG_TXWIDTH_Pos);//¥´ ‰øÌ∂»8bit /
-/// CLEAR_BIT(DMA0->DMA_CFG,DMA_CFG_TPTYPE); //µ•¥Œ¥´ ‰ /
-/// REG_SET(DMA0->DMA_CFG,DMA_CFG_CIRC);//—≠ª∑ /
+/// DMA_CFG_TXWIDTH_Pos);//‰º†ËæìÂÆΩÂ∫¶8bit /
+/// CLEAR_BIT(DMA0->DMA_CFG,DMA_CFG_TPTYPE); //ÂçïÊ¨°‰º†Ëæì /
+/// REG_SET(DMA0->DMA_CFG,DMA_CFG_CIRC);//Âæ™ÁéØ /
 /// REG_SETn(DMA0->DMA_CFG,DMA_CFG_BURSIZE,0x7L <<
-/// DMA_CFG_BURSIZE_Pos);//¥•∑¢“ª¥Œ¥´ ‰1∏ˆ ˝æ› /
+/// DMA_CFG_BURSIZE_Pos);//Ëß¶Âèë‰∏ÄÊ¨°‰º†Ëæì1‰∏™Êï∞ÊçÆ /
 /// REG_SETn(DMA0->DMA_CFG,DMA_CFG_SAINC,0x3L <<
-/// DMA_CFG_SAINC_Pos);//‘¥µÿ÷∑‘ˆ¡øƒ£ Ω /
+/// DMA_CFG_SAINC_Pos);//Ê∫êÂú∞ÂùÄÂ¢ûÈáèÊ®°Âºè /
 /// REG_SETn(DMA0->DMA_CFG,DMA_CFG_DAINC,0x0L <<
-/// DMA_CFG_DAINC_Pos);//ƒø±Íµÿ÷∑Œﬁ‘ˆ¡øƒ£ Ω /
+/// DMA_CFG_DAINC_Pos);//ÁõÆÊ†áÂú∞ÂùÄÊó†Â¢ûÈáèÊ®°Âºè /
 /// REG_SETn(DMA0->DMA_CFG,DMA_CFG_REQSRC,12 << DMA_CFG_REQSRC_Pos);//SPI_TX /
 /// WRITE_REG(DMA0->DMA_SADR,(uint32_t)SPI_Send_Buffer); /
 /// WRITE_REG(DMA0->DMA_DADR,(uint32_t)&SPI0->SPI_DATA); /
 /// WRITE_REG(DMA0->DMA_CNT,20); /
-/// REG_SET(DMA0->DMA_CFG,DMA_CFG_INTEN);//¥Úø™DMA÷–∂œ /
-/// REG_SET(DMA0->DMA_CFG,DMA_CFG_TCIE);//¥Úø™DMA¥´ ‰ÕÍ≥…÷–∂œ /
-/// REG_SET(DMA0->DMA_CFG,DMA_CFG_CHEN);//DMA0Õ®µ¿ πƒ‹
+/// REG_SET(DMA0->DMA_CFG,DMA_CFG_INTEN);//ÊâìÂºÄDMA‰∏≠Êñ≠ /
+/// REG_SET(DMA0->DMA_CFG,DMA_CFG_TCIE);//ÊâìÂºÄDMA‰º†ËæìÂÆåÊàê‰∏≠Êñ≠ /
+/// REG_SET(DMA0->DMA_CFG,DMA_CFG_CHEN);//DMA0ÈÄöÈÅì‰ΩøËÉΩ
 //
-//	//“‘œ¬Œ™SPIΩ” ’DMA≈‰÷√
+//	//‰ª•‰∏ã‰∏∫SPIÊé•Êî∂DMAÈÖçÁΩÆ
 //	REG_SETn(DMA0->DMA_CFG,DMA_CFG_TXWIDTH,0x0L <<
-// DMA_CFG_TXWIDTH_Pos);//¥´ ‰øÌ∂»8bit 	CLEAR_BIT(DMA0->DMA_CFG,DMA_CFG_TPTYPE);
-////µ•¥Œ¥´ ‰ 	REG_SET(DMA0->DMA_CFG,DMA_CFG_CIRC);//—≠ª∑
+// DMA_CFG_TXWIDTH_Pos);//‰º†ËæìÂÆΩÂ∫¶8bit 	CLEAR_BIT(DMA0->DMA_CFG,DMA_CFG_TPTYPE);
+////ÂçïÊ¨°‰º†Ëæì 	REG_SET(DMA0->DMA_CFG,DMA_CFG_CIRC);//Âæ™ÁéØ
 //	REG_SETn(DMA0->DMA_CFG,DMA_CFG_BURSIZE,0x7L <<
-// DMA_CFG_BURSIZE_Pos);//¥•∑¢“ª¥Œ¥´ ‰1∏ˆ ˝æ›
+// DMA_CFG_BURSIZE_Pos);//Ëß¶Âèë‰∏ÄÊ¨°‰º†Ëæì1‰∏™Êï∞ÊçÆ
 //	REG_SETn(DMA0->DMA_CFG,DMA_CFG_SAINC,0x0L <<
-// DMA_CFG_SAINC_Pos);//‘¥µÿ÷∑Œﬁ‘ˆ¡øƒ£ Ω
+// DMA_CFG_SAINC_Pos);//Ê∫êÂú∞ÂùÄÊó†Â¢ûÈáèÊ®°Âºè
 //	REG_SETn(DMA0->DMA_CFG,DMA_CFG_DAINC,0x3L <<
-// DMA_CFG_DAINC_Pos);//ƒø±Íµÿ÷∑‘ˆ¡øƒ£ Ω
+// DMA_CFG_DAINC_Pos);//ÁõÆÊ†áÂú∞ÂùÄÂ¢ûÈáèÊ®°Âºè
 // REG_SETn(DMA0->DMA_CFG,DMA_CFG_REQSRC,15
 //<< DMA_CFG_REQSRC_Pos);//SPI1_RX
 //	WRITE_REG(DMA0->DMA_SADR,(uint32_t)&SPI1->SPI_DATA);
 //	WRITE_REG(DMA0->DMA_DADR,(uint32_t)SPI_Receive_Buffer);
 //	WRITE_REG(DMA0->DMA_CNT,4);
-//	REG_SET(DMA0->DMA_CFG,DMA_CFG_INTEN);//¥Úø™DMA÷–∂œ
-//	REG_SET(DMA0->DMA_CFG,DMA_CFG_TCIE);//¥Úø™DMA¥´ ‰ÕÍ≥…÷–∂œ
-//	REG_SET(DMA0->DMA_CFG,DMA_CFG_CHEN);//DMA0Õ®µ¿ πƒ‹
+//	REG_SET(DMA0->DMA_CFG,DMA_CFG_INTEN);//ÊâìÂºÄDMA‰∏≠Êñ≠
+//	REG_SET(DMA0->DMA_CFG,DMA_CFG_TCIE);//ÊâìÂºÄDMA‰º†ËæìÂÆåÊàê‰∏≠Êñ≠
+//	REG_SET(DMA0->DMA_CFG,DMA_CFG_CHEN);//DMA0ÈÄöÈÅì‰ΩøËÉΩ
 //}
 
 // void SPI0_DMA_Init(void)
@@ -106,7 +106,7 @@ void SC_DMA_Init(void) {
 ////	CS_IO = CS_LOW;
 ////	Delay(100);
 ////	WRITE_REG(SPI0->SPI_DATA, DATA_Master_LOW);
-////	REG_SET(RCCAPB0->APB0_RST,APB0_RST_SPI0RST);   // SPI0∏¥Œª
+////	REG_SET(RCCAPB0->APB0_RST,APB0_RST_SPI0RST);   // SPI0Â§ç‰Ωç
 //}
 
 // void SPI1_DMA_Init(void)
@@ -119,11 +119,11 @@ void SC_DMA_Init(void) {
 ////	CS_IO = CS_LOW;
 ////	Delay(100);
 ////	WRITE_REG(SPI1->SPI_DATA, DATA_Master_LOW);
-////	REG_SET(RCCAPB0->APB0_RST,APB0_RST_SPI0RST);   // SPI0∏¥Œª
+////	REG_SET(RCCAPB0->APB0_RST,APB0_RST_SPI0RST);   // SPI0Â§ç‰Ωç
 //
 //}
 
-///*DMA0÷–∂œ¥¶¿Ì∫Ø ˝*/
+///*DMA0‰∏≠Êñ≠Â§ÑÁêÜÂáΩÊï∞*/
 // void DMA0_IRQHandler(void)
 //{
 //	PC_OT(1);
@@ -148,7 +148,7 @@ void SC_DMA_Init(void) {
 
 //}
 
-///*DMA1÷–∂œ¥¶¿Ì∫Ø ˝*/
+///*DMA1‰∏≠Êñ≠Â§ÑÁêÜÂáΩÊï∞*/
 // void DMA1_IRQHandler(void)
 //{
 ////	PC_OT(0);

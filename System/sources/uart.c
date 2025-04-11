@@ -1,7 +1,7 @@
 #include "Function_Init.h"
 // void Uart1_Config(unsigned int Clk,unsigned int Baud)
 //{
-//	/* uart³õÊ¼»¯ */
+//	/* uartåˆå§‹åŒ– */
 //	UART1->UART_CON |= 0x1UL<<UART_CON_SPOS_Pos;
 //	UART1->UART_CON |= 0x1UL<<UART_CON_SM01_Pos;
 //	UART1->UART_CON |= UART_CON_TXEN;

@@ -1,24 +1,24 @@
 //*************************************************************************************************
-//  Copyright (c) 	ÉîÛÚÊĞÈüÔªÎ¢µç×Ó¹É·İÓĞÏŞ¹«Ë¾
-//	ÎÄ¼şÃû³Æ	:  SensorMethod.h
-//	×÷Õß		:
-//	Ä£¿é¹¦ÄÜ	:  ´¥¿ØËã·¨Í·ÎÄ¼ş
-// 	°æ±¾	    :
-// 	¸ü¸Ä¼ÇÂ¼	:
-//	×¢ÒâÊÂÏî	:
+//  Copyright (c) 	æ·±åœ³å¸‚èµ›å…ƒå¾®ç”µå­è‚¡ä»½æœ‰é™å…¬å¸
+//	æ–‡ä»¶åç§°	:  SensorMethod.h
+//	ä½œè€…		:
+//	æ¨¡å—åŠŸèƒ½	:  è§¦æ§ç®—æ³•å¤´æ–‡ä»¶
+// 	ç‰ˆæœ¬	    :
+// 	æ›´æ”¹è®°å½•	:
+//	æ³¨æ„äº‹é¡¹	:
 //************************************************************************************************
 #ifndef _sc32f10xx_TK_FileAnalysis_H
 #define _sc32f10xx_TK_FileAnalysis_H
 
 typedef struct {
-    unsigned short int Rawdata;    // Ô­Ê¼Êı¾İ
-    unsigned short int Baseline;   // »ùÏß
-    unsigned short int FilterData; // Ô­Ê¼Êı¾İÂË²¨»º´æÇø
+    unsigned short int Rawdata;    // åŸå§‹æ•°æ®
+    unsigned short int Baseline;   // åŸºçº¿
+    unsigned short int FilterData; // åŸå§‹æ•°æ®æ»¤æ³¢ç¼“å­˜åŒº
 
 } TK_BaseLineUpdatePar_StructDef;
 
 typedef struct {
-    unsigned char BaseLineAdjusttmp; // IA»º´æÊı×é
+    unsigned char BaseLineAdjusttmp; // IAç¼“å­˜æ•°ç»„
 
 } TK_ParameterBuffer_StructDef;
 

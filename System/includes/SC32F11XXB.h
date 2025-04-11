@@ -681,7 +681,7 @@ typedef struct {
 //	 IFB[200H]~IFB[3FFH] for CustomerOption
 //*/
 ///**
-//* @brief must to OPINX and OPREG operate£¬and  AHB_CFG.2(FIBEN)=1,Protect
+//* @brief must to OPINX and OPREG operateï¼Œand  AHB_CFG.2(FIBEN)=1,Protect
 // Adress=Adress[8:0]*512
 //  */
 // typedef struct
@@ -707,7 +707,7 @@ typedef struct {
          IFB[400H]~IFB[5FFH] for DesignOption
 */
 /**
- * @brief must to OPINX and OPREG operate£¬and
+ * @brief must to OPINX and OPREG operateï¼Œand
  * AHB_CFG.2(FIBEN)=1&&PASSWORD=Decode
  */
 typedef struct {
