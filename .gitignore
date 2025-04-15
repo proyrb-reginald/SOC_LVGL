@@ -2,3 +2,5 @@
 Listings/
 Objects/
 *.uvguix.*
+*.txt
+*.mk
