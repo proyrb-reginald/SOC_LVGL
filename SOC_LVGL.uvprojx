@@ -1388,6 +1388,11 @@
               <FileType>1</FileType>
               <FilePath>.\GUI\screens\ui_screen.c</FilePath>
             </File>
+            <File>
+              <FileName>background_200.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GUI\images\background_200.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

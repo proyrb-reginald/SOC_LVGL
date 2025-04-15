@@ -30,7 +30,7 @@
 #endif
 
 #ifndef MY_DISP_LINE_COUNT
-#define MY_DISP_LINE_COUNT 16
+#define MY_DISP_LINE_COUNT 17
 #endif
 
 /**********************
@@ -123,7 +123,7 @@ void lv_port_disp_init(void) {
 
     /*Set the resolution of the display*/
     disp_drv.hor_res = MY_DISP_HOR_RES;
-    disp_drv.ver_res = MY_DISP_VER_RES; // �޸���Ļ��Ӧ�Ĵ�С
+    disp_drv.ver_res = MY_DISP_VER_RES;
 
     /*Used to copy the buffer's content to the display*/
     disp_drv.flush_cb = disp_flush;
@@ -132,7 +132,6 @@ void lv_port_disp_init(void) {
     disp_drv.draw_buf = &draw_buf_dsc_1;
 
     /*Required for Example 3)*/
-    // disp_drv.full_refresh = 1
 
     /* Fill a memory array with a color if you have GPU.
      * Note that, in lv_conf.h you can enable GPUs that has built-in support in
