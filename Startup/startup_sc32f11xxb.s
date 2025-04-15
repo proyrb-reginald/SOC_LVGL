@@ -18,7 +18,7 @@
 ;   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Stack_Size      EQU     0x0000400
+Stack_Size      EQU     0x0000500
 
                 AREA    STACK, NOINIT, READWRITE, ALIGN=3
 Stack_Mem       SPACE   Stack_Size
@@ -29,7 +29,7 @@ __initial_sp
 ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Heap_Size       EQU     0x00000200
+Heap_Size       EQU     0x00000300
 
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base
@@ -68,7 +68,7 @@ __Vectors       DCD     __initial_sp                   ; Top of Stack
 				DCD     EXTI1_7_IRQHandler               	; EXTI1~EXTI17
 				DCD     EXTI8_11_IRQHandler               	; EXTI8~EXTI11
 				DCD     EXTI12_15_IRQHandler               	; EXTI12~EXTI15
-				DCD		RCC_IRQHandler						; RCC£º£ºÍ£Õñ¼ì²â
+				DCD		RCC_IRQHandler						; RCCï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½
 				DCD		0									; LDP
                 DCD     BTM_IRQHandler                   	; BTM
                 DCD     UART0_2_4_IRQHandler            	; UART0-UART2(LIN)-UART4
