@@ -17,10 +17,7 @@
 #include "../core/lv_obj.h"
 #include "../core/lv_refr.h"
 #include "../core/lv_theme.h"
-#include "../draw/sdl/lv_draw_sdl.h"
 #include "../draw/sw/lv_draw_sw.h"
-#include "../draw/sdl/lv_draw_sdl.h"
-#include "../draw/stm32_dma2d/lv_gpu_stm32_dma2d.h"
 
 #if LV_USE_THEME_DEFAULT
     #include "../extra/themes/default/lv_theme_default.h"

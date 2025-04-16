@@ -709,11 +709,6 @@
               <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw.c</FilePath>
             </File>
             <File>
-              <FileName>lv_draw_sw_arc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_arc.c</FilePath>
-            </File>
-            <File>
               <FileName>lv_draw_sw_blend.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_blend.c</FilePath>
@@ -752,11 +747,6 @@
               <FileName>lv_draw_sw_rect.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_rect.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\lv_draw.c</FilePath>
             </File>
             <File>
               <FileName>lv_draw_arc.c</FileName>
@@ -809,74 +799,14 @@
               <FilePath>.\Middlewares\LVGL\src\draw\lv_img_decoder.c</FilePath>
             </File>
             <File>
-              <FileName>lv_draw_sdl.c</FileName>
+              <FileName>lv_draw_sw_arc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl.c</FilePath>
+              <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_arc.c</FilePath>
             </File>
             <File>
-              <FileName>lv_draw_sdl_arc.c</FileName>
+              <FileName>lv_draw.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_arc.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_bg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_bg.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_composite.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_composite.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_img.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_img.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_label.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_label.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_line.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_line.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_mask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_mask.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_polygon.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_polygon.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_rect.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_rect.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_stack_blur.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_stack_blur.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_texture_cache.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_texture_cache.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_draw_sdl_utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sdl\lv_draw_sdl_utils.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_gpu_stm32_dma2d.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\stm32_dma2d\lv_gpu_stm32_dma2d.c</FilePath>
+              <FilePath>.\Middlewares\LVGL\src\draw\lv_draw.c</FilePath>
             </File>
           </Files>
         </Group>
