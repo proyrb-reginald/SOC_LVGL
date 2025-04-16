@@ -17,7 +17,7 @@ extern "C" {
 
 // #define Container_Size 32
 // #define Container_Size 52
-#define Container_Size 72
+// #define Container_Size 72
 // #define Container_Size 92
 // #define Container_Size 112
 // #define Container_Size 132
@@ -27,7 +27,7 @@ extern "C" {
 // #define Container_Size 212
 // #define Container_Size 232
 // #define Container_Size 252
-// #define Container_Size 272
+#define Container_Size 272
 
 #define Image_Size 200
 #define Image_File background_200
@@ -41,6 +41,8 @@ void ui_Screen_screen_init(void);
 extern lv_obj_t *ui_Screen;
 extern lv_obj_t *ui_Container;
 extern lv_obj_t *ui_Image;
+extern lv_obj_t *ui_Label_1;
+extern lv_timer_t *ui_Timer;
 // CUSTOM VARIABLES
 
 // EVENTS

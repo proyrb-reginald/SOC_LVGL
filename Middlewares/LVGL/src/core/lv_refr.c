@@ -357,7 +357,8 @@ void _lv_disp_refr_timer(lv_timer_t * tmr)
     }
 
     if(lv_tick_elaps(perf_monitor.perf_last_time) < 300) {
-        if(px_num > 5000) {
+        //每次绘制的像素总数如果小于该值就会忽略该次绘制计数从而出现一直都是满帧状态
+        if(px_num > 1000) {
             perf_monitor.elaps_sum += elaps;
             perf_monitor.frame_cnt ++;
         }

@@ -267,7 +267,7 @@ int main(void) {
     ui_init();
 
     while (1) {
-        Sys_Scan();
+        // Sys_Scan();
         lv_timer_handler();
     }
 }
