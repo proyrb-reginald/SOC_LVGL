@@ -1374,11 +1374,6 @@
               <FilePath>.\GUI\ui.c</FilePath>
             </File>
             <File>
-              <FileName>ui_helpers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\GUI\ui_helpers.c</FilePath>
-            </File>
-            <File>
               <FileName>ui_comp_hook.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\GUI\components\ui_comp_hook.c</FilePath>

@@ -30,7 +30,7 @@
 #endif
 
 #ifndef MY_DISP_LINE_COUNT
-#define MY_DISP_LINE_COUNT 16
+#define MY_DISP_LINE_COUNT 17
 #endif
 
 /**********************
