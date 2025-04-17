@@ -709,6 +709,11 @@
               <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw.c</FilePath>
             </File>
             <File>
+              <FileName>lv_draw_sw_arc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_arc.c</FilePath>
+            </File>
+            <File>
               <FileName>lv_draw_sw_blend.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_blend.c</FilePath>
@@ -747,6 +752,11 @@
               <FileName>lv_draw_sw_rect.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_rect.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_draw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\draw\lv_draw.c</FilePath>
             </File>
             <File>
               <FileName>lv_draw_arc.c</FileName>
@@ -799,14 +809,24 @@
               <FilePath>.\Middlewares\LVGL\src\draw\lv_img_decoder.c</FilePath>
             </File>
             <File>
-              <FileName>lv_draw_sw_arc.c</FileName>
+              <FileName>lv_draw_sw_layer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_arc.c</FilePath>
+              <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_layer.c</FilePath>
             </File>
             <File>
-              <FileName>lv_draw.c</FileName>
+              <FileName>lv_draw_sw_transform.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Middlewares\LVGL\src\draw\lv_draw.c</FilePath>
+              <FilePath>.\Middlewares\LVGL\src\draw\sw\lv_draw_sw_transform.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_draw_layer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\draw\lv_draw_layer.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_draw_transform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\draw\lv_draw_transform.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1272,6 +1292,41 @@
               <FileName>lv_extra.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middlewares\LVGL\src\extra\lv_extra.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_fs_littlefs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\extra\libs\fsdrv\lv_fs_littlefs.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_tiny_ttf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\extra\libs\tiny_ttf\lv_tiny_ttf.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_fragment.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\extra\others\fragment\lv_fragment.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_fragment_manager.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\extra\others\fragment\lv_fragment_manager.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_ime_pinyin.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\extra\others\ime\lv_ime_pinyin.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_imgfont.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\extra\others\imgfont\lv_imgfont.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_msg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middlewares\LVGL\src\extra\others\msg\lv_msg.c</FilePath>
             </File>
           </Files>
         </Group>
