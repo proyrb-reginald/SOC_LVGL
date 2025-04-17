@@ -1,6 +1,5 @@
 #include "main.h"
 #include "lv_port_disp.h"
-// #include "lv_port_indev.h"
 #include "lvgl.h"
 #include "sc32f10xx_touch_key_dynamic_debug.h"
 #include "sc32f10xx_touch_key_function_resource.h"
@@ -10,14 +9,10 @@
 #include "uart.h"
 #include "ui.h"
 
-
 /************************* Miscellaneous Configuration ************************/
-/*!< Uncomment the following line if you need to relocate your vector Table in
-     Internal SRAM. */
-// #define VECT_TAB_SRAM
+// Uncomment the following line if you need to relocate your vector Table in Internal SRAM.
 #define VECT_TAB_OFFSET 0x0U
-/*!< Vector Table base offset field.
-                                   This value must be a multiple of 0x100. */
+// Vector Table base offset field. This value must be a multiple of 0x100.
 #define SetIO_PA(x) PA_BIT(x) = 1
 #define SetIO_PB(x) PB_BIT(x) = 1
 #define SetIO_PC(x) PC_BIT(x) = 1
@@ -39,25 +34,20 @@ QSPI_StrmodeTypeDef strmode;
 int i = 0;
 uint8_t PicNum = 0;
 uint8_t menu = 1;
-int value = 10; // 初始值
-int picLeft1[] = {
-    4, 13, 26, 36}; // 需要排除的数值列表，用...表示可能有很多数值//小循环左区间
+int value = 10;                     // 初始值
+int picLeft1[] = {4, 13, 26, 36};   // 需要排除的数值列表，用...表示可能有很多数值//小循环左区间
 int picRight1[] = {13, 26, 36, 48}; // 小循环右区间
 int n1 = sizeof(picLeft1) / sizeof(picLeft1[0]);
 int n2 = sizeof(picRight1) / sizeof(picRight1[0]);
-int picLeft2[] = {
-    50, 66, 83}; // 需要排除的数值列表，用...表示可能有很多数值//小循环左区间
+int picLeft2[] = {50, 66, 83};  // 需要排除的数值列表，用...表示可能有很多数值//小循环左区间
 int picRight2[] = {66, 83, 98}; // 小循环右区间
 int n3 = sizeof(picLeft2) / sizeof(picLeft2[0]);
 int n4 = sizeof(picRight2) / sizeof(picRight2[0]);
-int picLeft3[] = {
-    101, 112, 123,
-    134}; // 需要排除的数值列表，用...表示可能有很多数值//小循环左区间
+int picLeft3[] = {101, 112, 123, 134};  // 需要排除的数值列表，用...表示可能有很多数值//小循环左区间
 int picRight3[] = {112, 123, 134, 144}; // 小循环右区间
 int n5 = sizeof(picLeft3) / sizeof(picLeft3[0]);
 int n6 = sizeof(picRight3) / sizeof(picRight3[0]);
-int picLeft4[] = {
-    146, 155, 166}; // 需要排除的数值列表，用...表示可能有很多数值//小循环左区间
+int picLeft4[] = {146, 155, 166};  // 需要排除的数值列表，用...表示可能有很多数值//小循环左区间
 int picRight4[] = {155, 166, 175}; // 小循环右区间
 int n7 = sizeof(picLeft4) / sizeof(picLeft4[0]);
 int n8 = sizeof(picRight4) / sizeof(picRight4[0]);
@@ -67,11 +57,9 @@ void SystemInit(void) {
     /* Configure the Vector Table location add offset address
      * ------------------*/
 #ifdef VECT_TAB_SRAM
-    SCB->VTOR = SRAM_BASE |
-                VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
+    SCB->VTOR = SRAM_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
 #else
-    SCB->VTOR = FLASH_BASE |
-                VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
+    SCB->VTOR = FLASH_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
 #endif
 }
 
@@ -250,7 +238,7 @@ void Sys_Scan(void) {
     if (TK_TouchKeyStatus &
         0x80) { // 重要步骤2:
                 // 触摸键扫描一轮标志，是否调用TouchKeyScan()一定要根据此标志位置起后
-        TK_TouchKeyStatus &= 0x7f; // 重要步骤3: 清除标志位， 需要外部清除。
+        TK_TouchKeyStatus &= 0x7f;             // 重要步骤3: 清除标志位， 需要外部清除。
         TK_exKeyValueFlag = TK_TouchKeyScan(); // 按键数据处理函数
         //				printf("按下 value：%u\r\n",
         // TK_exKeyValueFlag);
@@ -262,6 +250,7 @@ void Sys_Scan(void) {
 
 int main(void) {
     SystemClock_Config();
+    lv_init();
     TK_Init();
     IO_Init();
     SC_DMA_Init();
@@ -269,10 +258,7 @@ int main(void) {
     PA_BIT(1) = 1;
     PA_BIT(2) = 1;
     SC_TIM0_Init();
-
-    lv_init();
     lv_port_disp_init();
-    // lv_port_indev_init();
     ui_init();
     while (1) {
         Sys_Scan();
