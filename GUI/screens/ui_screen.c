@@ -4,6 +4,69 @@
 // Project name: soc_lvgl
 
 #include "../ui.h"
+#include "function_init.h"
+
+extern uint8_t exKeyValue;
+
+static lv_style_t style_button;
+
+void touch_key_refresh_cb(lv_timer_t *timer) {
+    static uint8_t last_value = 255;
+    static uint8_t select = 0;
+
+    uint8_t current_value = exKeyValue;
+    lv_obj_t *select_button = NULL;
+    switch (select) {
+    case 0:
+        select_button = ui_refreshbutton;
+        break;
+    case 1:
+        select_button = ui_switchbutton;
+        break;
+    case 2:
+        select_button = ui_modebutton;
+        break;
+    case 3:
+        select_button = ui_otherbutton;
+        break;
+    }
+    lv_obj_clear_state(select_button,
+                       LV_STATE_FOCUSED); /*MAke the checkbox unchecked*/
+    if ((current_value != last_value) && (current_value == 255)) {
+        switch (last_value) {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            select = (++select + 4) % 4;
+            break;
+        case 4:
+            select = (--select + 4) % 4;
+            break;
+        default:
+            break;
+        }
+    }
+    switch (select) {
+    case 0:
+        select_button = ui_refreshbutton;
+        break;
+    case 1:
+        select_button = ui_switchbutton;
+        break;
+    case 2:
+        select_button = ui_modebutton;
+        break;
+    case 3:
+        select_button = ui_otherbutton;
+        break;
+    }
+    lv_obj_add_state(
+        select_button,
+        LV_STATE_FOCUSED); /*Make the checkbox checked and disabled*/
+    last_value = current_value;
+}
 
 void ui_screen_screen_init(void)
 {
@@ -315,4 +378,6 @@ void ui_screen_screen_init(void)
     lv_label_set_text(ui_otherlabel, "Other");
     lv_obj_set_style_text_font(ui_otherlabel, &lv_font_montserrat_12, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    touch_key_refresh_timer = lv_timer_create(touch_key_refresh_cb, 10, NULL);
+    lv_timer_ready(touch_key_refresh_timer);
 }

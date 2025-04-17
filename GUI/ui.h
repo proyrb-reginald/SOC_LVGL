@@ -47,6 +47,7 @@ extern lv_obj_t * ui_modebutton;
 extern lv_obj_t * ui_modelabel;
 extern lv_obj_t * ui_otherbutton;
 extern lv_obj_t * ui_otherlabel;
+extern lv_timer_t * touch_key_refresh_timer;
 // CUSTOM VARIABLES
 
 // EVENTS
